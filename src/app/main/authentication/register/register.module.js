@@ -3,35 +3,35 @@
     'use strict';
 
     angular
-        .module('app.pages.auth.register-v2', [])
+        .module('kms.auth.register', [])
         .config(config);
 
     /** @ngInject */
     function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider)
     {
         // State
-        $stateProvider.state('app.pages_auth_register-v2', {
-            url      : '/pages/auth/register-v2',
+        $stateProvider.state('app.register', {
+            url      : '/register',
             views    : {
                 'main@'                          : {
                     templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
-                'content@app.pages_auth_register-v2': {
-                    templateUrl: 'app/main/pages/auth/register-v2/register-v2.html',
-                    controller : 'RegisterV2Controller as vm'
+                'content@app.register': {
+                    templateUrl: 'app/main/authentication/register/register.html',
+                    controller : 'RegisterController as vm'
                 }
             },
             bodyClass: 'register-v2'
         });
 
         // Translate
-        $translatePartialLoaderProvider.addPart('app/main/pages/auth/register-v2');
+        $translatePartialLoaderProvider.addPart('app/main/authentication/register');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.register-v2', {
-            title : 'Register v2',
-            state : 'app.pages_auth_register-v2',
+        msNavigationServiceProvider.saveItem('auth.register', {
+            title : 'Register',
+            state : 'app.register',
             weight: 4
         });
     }

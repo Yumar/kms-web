@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('app.pages.auth.reset-password')
+        .module('kms.auth.reset-password')
         .controller('ResetPasswordController', ResetPasswordController);
 
     /** @ngInject */

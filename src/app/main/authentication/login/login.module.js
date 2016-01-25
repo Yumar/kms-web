@@ -17,7 +17,7 @@
                     templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
-                'content@app.pages_auth_login': {
+                'content@app.login': {
                     templateUrl: 'app/main/authentication/login/login.html',
                     controller : 'LoginController as vm'
                 }

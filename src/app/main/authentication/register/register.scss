@@ -1,10 +1,10 @@
-#register-v2 {
+#register {
     height: 100%;
     overflow: hidden;
     background: url('/assets/images/backgrounds/march.jpg') no-repeat;
     background-size: cover;
 
-    #register-v2-intro {
+    #register-intro {
         padding: 128px;
 
         .logo {
@@ -31,14 +31,14 @@
         }
     }
 
-    #register-v2-form-wrapper {
+    #register-form-wrapper {
         width: 416px;
         min-width: 416px;
         max-width: 416px;
         height: 100%;
         background: #FFFFFF;
 
-        #register-v2-form {
+        #register-form {
             padding: 128px 48px 48px 48px;
 
             .logo {
@@ -105,15 +105,15 @@
 // RESPONSIVE
 @media screen and (max-width: $layout-breakpoint-sm) {
 
-    #register-v2 {
+    #register {
 
-        #register-v2-form-wrapper {
+        #register-form-wrapper {
             width: 100%;
             min-width: 100%;
             max-width: 100%;
             padding: 16px;
 
-            #register-v2-form {
+            #register-form {
                 padding: 24px;
                 text-align: center;
             }

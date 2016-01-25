@@ -10,15 +10,15 @@
     function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider)
     {
         // State
-        $stateProvider.state('app.pages_auth_forgot-password', {
-            url      : '/pages/auth/forgot-password',
+        $stateProvider.state('app.forgot-password', {
+            url      : '/forgot-password',
             views    : {
                 'main@'                                 : {
                     templateUrl: 'app/core/layouts/content-only.html',
                     controller : 'MainController as vm'
                 },
                 'content@app.pages_auth_forgot-password': {
-                    templateUrl: 'app/main/pages/auth/forgot-password/forgot-password.html',
+                    templateUrl: 'app/main/authentication/forgot-password/forgot-password.html',
                     controller : 'ForgotPasswordController as vm'
                 }
             },
@@ -26,12 +26,12 @@
         });
 
         // Translation
-        $translatePartialLoaderProvider.addPart('app/main/pages/auth/forgot-password');
+        $translatePartialLoaderProvider.addPart('app/main/authentication/forgot-password');
 
         // Navigation
-        msNavigationServiceProvider.saveItem('pages.auth.forgot-password', {
+        msNavigationServiceProvider.saveItem('auth.forgot-password', {
             title : 'Forgot Password',
-            state : 'app.pages_auth_forgot-password',
+            state : 'app.forgot-password',
             weight: 5
         });
     }
