@@ -6,7 +6,7 @@
      * Main module of the Fuse
      */
     angular
-        .module('fuse', [
+        .module('kms', [
 
             // Core
             'app.core',
@@ -21,6 +21,9 @@
             'app.quick-panel',
 
             // Sample
-            'app.sample'
+            'app.sample',
+            
+            // KMS authentication pages
+            'kms.auth'
         ]);
 })();

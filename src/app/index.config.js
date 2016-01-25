@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('fuse')
+        .module('kms')
         .config(config);
 
     /** @ngInject */

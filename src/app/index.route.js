@@ -3,7 +3,7 @@
     'use strict';
 
     angular
-        .module('fuse')
+        .module('kms')
         .config(routeConfig);
 
     /** @ngInject */
@@ -11,7 +11,7 @@
     {
         $locationProvider.html5Mode(true);
 
-        $urlRouterProvider.otherwise('/sample');
+        $urlRouterProvider.otherwise('/login');
 
         /**
          * Layout Style Switcher
