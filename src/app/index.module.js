@@ -19,9 +19,6 @@
 
             // Quick panel
             'app.quick-panel',
-
-            // Sample
-            'app.sample',
             
             // KMS authentication pages
             'kms.auth'

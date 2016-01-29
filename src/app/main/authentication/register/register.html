@@ -1,10 +1,10 @@
 <div id="register" layout="row" layout-align="start">
     <div id="register-intro" flex hide show-gt-sm>
-        <div class="logo md-accent-bg">
-            <span>F</span>
+        <div class="logo">
+            <img src="assets/images/logos/kms.png" alt="kms"/>
         </div>
         <div class="title" translate="REGISTER.INTRO_TITLE">
-            Welcome to the FUSE!
+            Bienvenido a KeepMeSafe
         </div>
         <div class="description" translate="REGISTER.INTRO_DESCRIPTION">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus ullamcorper nisl erat,
@@ -12,34 +12,110 @@
         </div>
     </div>
 
-    <div id="register-form-wrapper" class="flex-scrollable md-whiteframe-8dp" layout="column" flex ms-scroll>
+    <div id="register-form-wrapper" class="flex-scrollable md-whiteframe-8dp" layout="column" flex="50" ms-scroll>
         <div id="register-form">
             <div class="logo md-accent-bg" hide-gt-sm>
                 <span>F</span>
             </div>
 
-            <div class="title" translate="REGISTER.TITLE">Create an account</div>
+            <div class="title" translate="REGISTER.TITLE">Crear Cuenta</div>
             <div class="description" translate="REGISTER.DESCRIPTION">Sed mollis velit facilisis facilisis viverra
             </div>
 
-            <form name="registerForm" novalidate>
+            <form name="registerForm" novalidate ng-submit="vm.sendForm()">
+                <div layout="row">
+                    <md-input-container class="md-block" md-no-float flex="50">
+                        <input name="Name" ng-model="vm.form.Name" placeholder="Nombres"
+                               translate translate-attr-placeholder="REGISTER.NAME"
+                               required>
+                        <div ng-messages="registerForm.Name.$error" ng-show="registerForm.Name.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span translate="REGISTER.ERRORS.NAME_REQUIRED">El campo Nombre es obligatorio</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" md-no-float flex="50">
+                        <input name="LastName" ng-model="vm.form.LastName" placeholder="Apellidos"
+                               translate translate-attr-placeholder="REGISTER.LAST"
+                               required>
+                        <div ng-messages="registerForm.LastName.$error" ng-show="registerForm.LastName.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span translate="REGISTER.ERRORS.LAST_REQUIRED">El campo Apellido es obligatorio</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
                 <md-input-container class="md-block" md-no-float>
-                    <input name="username" ng-model="vm.form.username" placeholder="Name"
-                           translate translate-attr-placeholder="REGISTER.NAME"
+                    <input name="genre" ng-model="vm.form.genre" placeholder="Genero"
+                           translate translate-attr-placeholder="REGISTER.GENRE"
                            required>
-                    <div ng-messages="registerForm.username.$error" ng-show="registerForm.username.$touched"
+                    <div ng-messages="registerForm.genre.$error" ng-show="registerForm.genre.$touched"
                          role="alert">
                         <div ng-message="required">
-                            <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">Username field is required</span>
+                            <span translate="REGISTER.ERRORS.GENRE_REQUIRED">El campo G&eacute;nero es obligatorio</span>
                         </div>
                     </div>
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="email" name="email" ng-model="vm.form.email" placeholder="Email"
+                    <input name="DateOfBirth" ng-model="vm.form.DateOfBirth" placeholder="Fecha de Nacimiento"
+                           translate translate-attr-placeholder="REGISTER.BIRTHDATE"
+                           required>
+                    <div ng-messages="registerForm.DateOfBirth.$error" ng-show="registerForm.DateOfBirth.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.BIRTHDATE_REQUIRED">El campo Fecha de Nacimiento es obligatorio</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input name="address" ng-model="vm.form.address" placeholder="Direcci&oacute;n"
+                           translate translate-attr-placeholder="REGISTER.ADDRESS"
+                           required>
+                    <div ng-messages="registerForm.address.$error" ng-show="registerForm.address.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.ADDRESS_REQUIRED">El campo Direcci&oacute;n es obligatorio</span>
+                        </div>
+                    </div>
+                </md-input-container>
+                
+                <md-input-container class="md-block" md-no-float>
+                    <input name="phone" ng-model="vm.form.phone" placeholder="Tel&eacute;fono"                           
+                           type="tel" required>
+                    <div ng-messages="registerForm.phone.$error" ng-show="registerForm.phone.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.TEL_REQUIRED">El campo Tel&eacute;fono es obligatorio</span>
+                        </div>
+                        <div ng-message="phone">
+                            <span translate="REGISTER.ERRORS.TEL_REQUIRED">El campo Tel&eacute;fono debe contener un n&uacute;mero telef&oacute;nico valido</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input name="username" ng-model="vm.form.username" placeholder="Usuario"
+                           translate translate-attr-placeholder="REGISTER.USER"
+                           required>
+                    <div ng-messages="registerForm.username.$error" ng-show="registerForm.username.$touched"
+                         role="alert">
+                        <div ng-message="required">
+                            <span translate="REGISTER.ERRORS.USERNAME_REQUIRED">El campo Usuario es obligatorio</span>
+                        </div>
+                    </div>
+                </md-input-container>
+
+                <md-input-container class="md-block" md-no-float>
+                    <input type="UserEmail" name="UserEmail" ng-model="vm.form.UserEmail" placeholder="Email"
                            translate translate-attr-placeholder="REGISTER.EMAIL"
                            ng-pattern="/^.+@.+\..+$/" required>
-                    <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$touched" role="alert"
+                    <div ng-messages="registerForm.UserEmail.$error" ng-show="registerForm.UserEmail.$touched" role="alert"
                          multiple>
                         <div ng-message="required">
                             <span translate="REGISTER.ERRORS.EMAIL_REQUIRED">Email field is required</span>
@@ -51,10 +127,10 @@
                 </md-input-container>
 
                 <md-input-container class="md-block" md-no-float>
-                    <input type="password" name="password" ng-model="vm.form.password" placeholder="Password"
+                    <input type="password" name="password" ng-model="vm.form.Passw" placeholder="Password"
                            translate translate-attr-placeholder="REGISTER.PASSWORD"
                            required>
-                    <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched"
+                    <div ng-messages="registerForm.Passw.$error" ng-show="registerForm.Passw.$touched"
                          role="alert">
                         <div ng-message="required">
                             <span translate="REGISTER.ERRORS.PASSWORD_REQUIRED">Password field is required</span>
@@ -87,7 +163,7 @@
                            ng-disabled="registerForm.$invalid || registerForm.$pristine"
                            translate="REGISTER.CREATE_ACCOUNT"
                            translate-attr-aria-label="REGISTER.CREATE_ACCOUNT">
-                    CREATE MY ACCOUNT
+                    Registrar
                 </md-button>
             </form>
 

@@ -2,7 +2,7 @@
   "name": "fuse",
   "version": "1.2.2",
   "dependencies": {},
-  "scripts": {
+  "scripts": {"start": "node src\/server.js",
     "test": "gulp test"
   },
   "devDependencies": {
