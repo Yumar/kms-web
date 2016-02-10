@@ -7,20 +7,10 @@
      */
     angular
         .module('kms', [
-
-            // Core
-            'app.core',
-
-            // Navigation
-            'app.navigation',
-
-            // Toolbar
-            'app.toolbar',
-
-            // Quick panel
-            'app.quick-panel',
-            
-            // KMS authentication pages
-            'kms.auth'
+            'kms.auth',
+            'kms.map',
+            'kms.warning',
+            'kms.settings',
+            'app.core'
         ]);
 })();

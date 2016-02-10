@@ -1,0 +1,27 @@
+<md-toolbar class="md-accent">            
+    <div class="md-toolbar-tools">
+        <h1>Alerts</h1>
+        <span flex></span>
+        <md-button class="md-icon-button md-primary" aria-label="More">
+            <md-icon  md-svg-icon="assets/svg/more_vert.svg"></md-icon>
+        </md-button>
+    </div>
+</md-toolbar>
+
+<form name="searchForm">
+    <md-input-container class="md-block">
+        <label>Search</label>
+        <input minlength="5" maxlength="30" name="searchText" ng-model="searchText">
+        <div ng-messages="searchForm.searchText.$error">
+            <div ng-message="maxlength" ng-message="minlength">The name has to be less than 30 characters long.</div>
+        </div>
+    </md-input-container>
+</form>
+
+<md-list>
+    <md-list-item ng-repeat="warning in wc.list" layout="columns">
+         <md-button flex ng-click="wc.selectWarning(warning)" ng-class="{'selected' : warning === wc.selected }">             
+             {{warning.description}}
+         </md-button>
+     </md-list-item>
+</md-list>

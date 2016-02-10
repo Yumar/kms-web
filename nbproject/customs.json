@@ -1,0 +1,14 @@
+{
+    "elements": {
+        "ui-gmap-google-map": {},
+        "md-icon": {},
+        "md-list-item": {},
+        "md-button": {},
+        "md-list": {}
+    },
+    "attributes": {
+        "layout": {},
+        "center": {},
+        "zoom": {}
+    }
+}

@@ -1,25 +1,24 @@
-(function ()
-{
+(function (){
     'use strict';
 
     angular
-        .module('kms')
-        .controller('MainController', MainController);
+            .module('kms')
+            .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($scope, $rootScope)
-    {
-        // Data
+    function MainController($scope, $state, $mdSidenav) {
+        $scope.toggleRight = buildToggler('right');
+        $scope.newAlert = function (){
+            $state.go('app.login');
+        };
 
-        //////////
-
-        // Remove the splash screen
-        $scope.$on('$viewContentAnimationEnded', function (event)
-        {
-            if ( event.targetScope.$id === $scope.$id )
-            {
-                $rootScope.$broadcast('msSplashScreen::remove');
+        function buildToggler(navID) {
+            return function () {
+                $mdSidenav(navID)
+                        .toggle();
             }
-        });
+        }
+        
+        
     }
 })();
