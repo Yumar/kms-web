@@ -22,6 +22,9 @@
                             templateUrl: 'app/main/main.html',
                             controller: 'MainController'
                         },
+                        'toolbar@app':{
+                            templateUrl:'app/main/toolbar/top-toolbar.html'
+                        },
                         'maps@app': {
                             templateUrl: 'app/main/map/map.tpl.html',
                             controller: 'MapController as mp'

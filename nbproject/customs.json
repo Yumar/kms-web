@@ -9,6 +9,7 @@
     "attributes": {
         "layout": {},
         "center": {},
+        "ui-view": {},
         "zoom": {}
     }
 }

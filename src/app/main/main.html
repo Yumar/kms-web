@@ -2,16 +2,9 @@
     <md-content flex="30" hide-sm layout="column"tabIndex="-1" role="main" 
                 class="md-whiteframe-z2" ui-view="warnings">
     </md-content>
-    <md-content flex="70" flex-sm="100">
-        <md-toolbar>                     
-            <div class="md-toolbar-tools">
-                <span flex></span>
-                <md-button class="md-icon-button" aria-label="Menu" ng-click="toggleRight()">
-                    <md-icon  md-svg-icon="assets/svg/menu.svg"></md-icon>
-                </md-button>
-            </div>
-        </md-toolbar>
-        <div ui-view="map"></div>
+    <md-content flex="70" flex-sm="100">        
+        <div ui-view="toolbar"></div>
+        <div class="maps" ui-view="maps"></div>
         <md-fab-speed-dial ng-hide="demo.hidden" md-direction="right" md-open="demo.isOpen"
                            class="md-scale md-fab-bottom-left" ng-class="{ 'md-hover-full': demo.hover }"
                            ng-mouseenter="demo.isOpen = true" ng-mouseleave="demo.isOpen = false"
@@ -35,8 +28,6 @@
             </md-fab-actions>
         </md-fab-speed-dial>
     </md-content>
-    <md-sidenav md-component-id="right" class="md-sidenav-right" 
-                ui-view="sidebar">
-    </md-sidenav>
+
     <div ui-view="modal"></div>
 </div>

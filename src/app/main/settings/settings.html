@@ -1,3 +1,48 @@
-<md-list>
-    <div ui-view></div>
-<md-list>
+<div ui-view="toolbar"></div>
+<div id="forms" class="page-layout simple fullwidth doc-page" layout="column">
+
+    <!-- HEADER -->
+    <div class="header md-accent-bg" layout="row" layout-align="space-between">
+        <div layout="column" layout-align="space-between">
+            <div class="breadcrumb" layout="row" layout-align="start center">
+                <md-icon md-font-icon="icon-home" class="s16"></md-icon>
+                <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
+                <span class="parent">USER INTERFACE</span>
+            </div>
+
+            <div class="title">Forms</div>
+        </div>
+    </div>
+    <!-- / HEADER -->
+
+    <!-- CONTENT -->
+    <div class="content" layout="column">
+
+        <div class="md-title mt-32">Basic form with validation</div>
+        <div class="pb-16">With this form example, Submit button will only be activated if all the required fields are
+            filled and if there is no error on the form.
+        </div>
+        <div layout="row">
+
+            <!-- BASIC FORM -->
+            <div class="form-wrapper md-whiteframe-1dp" flex="60">
+
+                <div ui-view="content"></div>
+
+            </div>
+            <!-- / BASIC FORM -->
+
+            <!-- BASIC FORM DATA -->
+            <div class="form-wrapper form-data-wrapper md-whiteframe-1dp" flex="40">
+                <div class="form-title">Form ng-model data</div>
+                <div class="json-data-wrapper">
+                    <pre>{{vm.basicForm | json}}</pre>
+                </div>
+            </div>
+            <!-- / BASIC FORM DATA -->
+        </div>
+
+    </div>
+    <!-- / CONTENT -->
+
+</div>

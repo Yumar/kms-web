@@ -8,7 +8,7 @@
 (function () {
     'use strict';
 
-    angular.module('kms.settings.warining-area')
+    angular.module('kms.settings.warning-area')
             .controller('WarningAreaController', WarningAreaController);
 
     function WarningAreaController() {
