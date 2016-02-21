@@ -4,15 +4,15 @@
  * and open the template in the editor.
  */
 
-(function(){
-    
+(function () {
     'use strict';
-    
+
     angular.module('kms.warning', [])
             .config(config);
-    
-    function config(){
-        
+
+    function config() {
     }
+
 })();
+
 

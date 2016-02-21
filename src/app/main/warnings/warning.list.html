@@ -1,0 +1,10 @@
+<md-toolbar class="warning-list-tools md-accent-bg">
+    <md-icon md-svg-src="assets/icons/svg/otros.svg"></md-icon>
+</md-toolbar>
+<md-list>
+    <md-list-item ng-repeat="warning in wc.list" layout="columns">
+         <md-button flex ng-click="wc.selectWarning(warning)" ng-class="{'selected' : warning === wc.selected }">             
+             {{warning.description}}
+         </md-button>
+     </md-list-item>
+</md-list>

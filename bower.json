@@ -1,6 +1,6 @@
 {
-  "name": "fuse",
-  "version": "1.2.2",
+  "name": "kms",
+  "version": "1.0",
   "dependencies": {
     "angular": "1.4.8",
     "angular-animate": "1.4.8",
@@ -53,21 +53,6 @@
       "main": [
         "css/perfect-scrollbar.css",
         "js/perfect-scrollbar.js"
-      ]
-    },
-    "Sortable": {
-      "main": [
-        "Sortable.js",
-        "ng-sortable.js"
-      ]
-    },
-    "font-awesome": {
-      "main": []
-    },
-    "angular-moment-picker": {
-      "main": [
-        "dist/angular-moment-picker.js",
-        "dist/angular-moment-picker.css"
       ]
     }
   }

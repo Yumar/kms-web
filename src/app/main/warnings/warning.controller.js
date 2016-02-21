@@ -4,15 +4,13 @@
  * and open the template in the editor.
  */
 
-
 (function () {
-
     'use strict';
 
     angular.module('kms.warning')
-            .controller('WarningController', controller);
+            .controller('WarningController', WarningController);
 
-    function controller(WarningsFactory) {
+    function WarningController(WarningFactory) {
         var wc = this;
         wc.selected = {};
         wc.list = [];
@@ -21,6 +19,6 @@
             wc.selected = w;
         };
         
-        wc.list = WarningsFactory.getAll();
+        wc.list = WarningFactory.getAll();
     }
 })();

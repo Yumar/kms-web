@@ -6,11 +6,23 @@
      * Main module of the Fuse
      */
     angular
-        .module('kms', [
-            'kms.auth',
-            'kms.map',
-            'kms.warning',
-            'kms.settings',
-            'app.core'
+        .module('fuse', [
+
+            // Core
+            'app.core',
+
+            // Navigation
+            'app.navigation',
+
+            // Toolbar
+            'app.toolbar',
+
+            // Quick panel
+            'app.quick-panel',
+
+            // Sample
+            'app.sample',
+            
+            'kms'
         ]);
 })();

@@ -1,15 +1,29 @@
 {
     "elements": {
+        "md-toolbar": {
+            "attributes": {
+                "class": {}
+            }
+        },
         "ui-gmap-google-map": {},
-        "md-icon": {},
+        "md-icon": {
+            "attributes": {
+                "md-svg-src": {}
+            }
+        },
+        "md-sidenav": {},
         "md-list-item": {},
         "md-button": {},
         "md-list": {}
     },
     "attributes": {
         "layout": {},
+        "flex": {},
+        "ng-click": {},
+        "ng-class": {},
         "center": {},
         "ui-view": {},
-        "zoom": {}
+        "zoom": {},
+        "ng-repeat": {}
     }
 }
