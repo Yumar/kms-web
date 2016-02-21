@@ -6,7 +6,7 @@
 
 (function () {
     'use strict';
-    angular.module('kms', ['kms.map', 'kms.warning'])
+    angular.module('kms', ['kms.map', 'kms.warning', 'uiGmapgoogle-maps'])
             .constant("server", {
                 "url": "http://kms-test.eastus.cloudapp.azure.com/kmsapi/api"
             })
