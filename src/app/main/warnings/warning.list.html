@@ -1,10 +1,24 @@
-<md-toolbar class="warning-list-tools md-accent-bg">
-    <md-icon md-svg-src="assets/icons/svg/otros.svg"></md-icon>
+<md-toolbar class="warning-list-tools md-whiteframe-1dp" >
+    <p>Alertas y Denuncias</p>
 </md-toolbar>
 <md-list>
-    <md-list-item ng-repeat="warning in wc.list" layout="columns">
-         <md-button flex ng-click="wc.selectWarning(warning)" ng-class="{'selected' : warning === wc.selected }">             
-             {{warning.description}}
-         </md-button>
-     </md-list-item>
+    <md-list-item class="md-3-line" ng-repeat-start="warning in wc.list">
+        <md-icon class="warning-icon" md-svg-src="assets/icons/svg/robo.svg"></md-icon>
+        <div class="md-list-item-text" layout="column">
+            <h3>{{ warning.TypeOfWarning.WarningDesc}}</h3>
+            <h4>{{ warning.Localitys.Sector}}</h4>
+            <p>{{ warning.Message}}</p>
+            <span></span>
+        </div>
+        <md-icon class="warning-icon" md-svg-src="assets/icons/svg/location.svg"></md-icon>
+    </md-list-item>
+    <md-divider ng-repeat-end></md-divider>
 </md-list>
+<!-- 
+<md-button class="md-fab md-warn md-fab-top-left" aria-label="P&aacute;nico">
+    <md-icon md-svg-src="assets/icons/svg/warning.svg"></md-icon>
+</md-button>
+-->
+<md-button class="md-fab md-fab-top-right" aria-label="Nueva den&uacute;ncia">
+    <md-icon md-svg-src="assets/icons/svg/bell.svg"></md-icon>
+</md-button>

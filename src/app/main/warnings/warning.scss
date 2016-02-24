@@ -8,8 +8,20 @@ and open the template in the editor.
     Author     : Jumar
 */
 
-.warning-list{
+#warning-list{
+    color: grey;
+    .warning-icon {
+        font-size: 52px;
+        height: 36px;
+        width: 36px;
+    }
+
     .warning-list-tools{
         background-color: white;
-    }
+        color: grey;
+        text-align: center;
+    }    
+    
 }
+
+

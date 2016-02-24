@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    angular.module('kms.warning', ['SignalR'])
+    angular.module('kms.auth.logon', [])
             .config(config);
 
     function config() {

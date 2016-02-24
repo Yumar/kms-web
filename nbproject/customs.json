@@ -1,5 +1,6 @@
 {
     "elements": {
+        "md-divider": {},
         "md-toolbar": {
             "attributes": {
                 "class": {}
