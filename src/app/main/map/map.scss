@@ -7,15 +7,13 @@ and open the template in the editor.
     Created on : Feb 10, 2016, 10:49:30 PM
     Author     : Jumar
 */
-.angular-google-map-container {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-}
 
-.maps{
+.map{
+    .angular-google-map,
+    .angular-google-map-container {
+        width: 100%;
+    }
+    
     position: relative;
     top: 0;
     bottom: 0;
@@ -24,6 +22,5 @@ and open the template in the editor.
     min-height: 100%;
     min-width: 100%;
 }
-
 
 

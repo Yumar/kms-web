@@ -51,6 +51,9 @@
         "angular-material.js"
       ]
     },
+    "angular-google-maps":{
+        
+    },
     "perfect-scrollbar": {
       "main": [
         "css/perfect-scrollbar.css",

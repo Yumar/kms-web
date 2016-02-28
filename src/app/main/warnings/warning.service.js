@@ -22,11 +22,12 @@
             var arr = [];
             for (var i = 0; i < 5; i++) {
                 arr.push({
+                    id:i,
                     Message:"Mensaje de alerta"+i,
                     TypeOfWarning:{WarningDesc:"Robo"},
                     Localitys:{
-                        Latitud:18.485264+i, 
-                        Longitud:-69.825685+i,
+                        latitude:18.485264+   (i*0.001), 
+                        longitude:-69.825685+ (i*0.001),
                         Address:"direccion "+i,
                         City:"Ciudad "+i,
                         Country:"Pais "+i,
