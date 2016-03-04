@@ -1,6 +1,6 @@
 <ui-gmap-google-map center="mp.simpleMap.center" zoom="mp.simpleMap.zoom" flex>
     <ui-gmap-marker ng-repeat="warning in mp.warnings" 
-        idKey='warning.id'
+        idKey='warning.id' options="{icon:'assets/icons/svg/robo.svg'}" 
         coords='{latitude : warning.Localitys.latitude, longitude: warning.Localitys.longitude}'>
     </ui-gmap-marker>
 </ui-gmap-google-map>

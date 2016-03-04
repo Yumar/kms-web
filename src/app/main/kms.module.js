@@ -40,7 +40,7 @@
                             controller: 'MainController as mc'
                         },
                         'warning-list@kms': {
-                            templateUrl: 'app/main/warnings/warning.list.html',
+                            templateUrl: 'app/main/warnings/templates/warning.list.html',
                             controller: 'WarningController as wc'
                         },
                         'map@kms': {
