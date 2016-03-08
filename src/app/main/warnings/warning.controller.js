@@ -12,12 +12,29 @@
 
     function WarningController(WarningFactory, $mdDialog) {
         var wc = this;
-        wc.selected = {};
         wc.list = [];
+        wc.selectedId = null;
+
+        function selectedCallback(warning) {
+            wc.selectedId = warning.id;
+        }
+
+        function saveWarning(w) {
+            console.info(w);
+//            var savePromise = WarningFactory.save(w);
+//            savePromise.then(function(data){
+//                w = data;
+//                WarningFactory.setSelected(w);
+//            });
+        }
 
         wc.selectWarning = function (w) {
-            wc.selected = w;
+            WarningFactory.setSelected(w);
         };
+        
+        wc.isSelected = function(id){
+            return wc.selectedId === id;
+        }
 
         wc.showDetailModal = function () {
             $mdDialog.show({
@@ -25,14 +42,14 @@
                 templateUrl: 'app/main/warnings/templates/warning.edit.html',
                 parent: angular.element(document.body),
                 clickOutsideToClose: true
-            })
-                    .then(function (warning) {
-                        console.info(warning);
-                    }, function () {
-                        wc.selected = {};
-                    });
+            }).then(function (warning) {
+                saveWarning(warning);
+            }, function () {
+
+            });
         }
 
         wc.list = WarningFactory.getAll();
+        WarningFactory.registerSelectedCallback(selectedCallback);
     }
 })();

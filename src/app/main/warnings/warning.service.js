@@ -8,17 +8,37 @@
     'use strict';
 
     angular.module('kms.warning')
-            .factory('WarningFactory', ['$http', 'server', '$rootScope', 'Hub', '$timeout', WarningFactory]);
+            .factory('WarningFactory', ['$http', 'server', '$rootScope', '$timeout', WarningFactory]);
 
-    function WarningFactory($http, server, $rootScope, Hub, $timeout) {
-        var serv = {}, 
-                hub = new Hub('warningHub', {}); 
+    function WarningFactory($http, server, $rootScope, $timeout) {
+        var serv = {
+            warnings:[],
+            selectedCallBacks:[],
+            selected:null
+        };
+        
+        serv.registerSelectedCallback = function(callback){
+            serv.selectedCallBacks.push(callback);
+        }
+        
+        serv.setSelected = function(warning){
+            serv.selected = warning;
+            notifySelected(warning);
+        }
 
         serv.getAll = function () {
-//            $http.get(server.url+"/Warnings")
-//                    .then(function(data){
-//                        return data;
-//                    }, onError);
+            if(!serv.warnings || serv.warnings.length < 1){
+                serv.warnings = generateAll();
+            }
+            
+            return serv.warnings;    
+        };
+
+        serv.get = function (id) {
+            return serv.warnings[id];
+        };
+        
+        function generateAll(){
             var arr = [];
             for (var i = 0; i < 5; i++) {
                 arr.push({
@@ -36,16 +56,15 @@
                 });
             }
             return arr;
-        };
-
-        serv.get = function (id) {
-
-        };
-
-        function onError(err) {
-            return [];
         }
-
+        
+        function notifySelected(warning){
+            angular.forEach(serv.selectedCallBacks, function(callback){
+                callback(warning);
+            })
+        }
+        
         return serv;
+        
     }
 })();

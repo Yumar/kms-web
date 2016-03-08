@@ -21,7 +21,11 @@ and open the template in the editor.
         color: grey;
         text-align: center;
     }    
-    
+
 }
 
-
+.warning-dialog-form{
+    .md-placeholder, .md-l{
+        color: black;
+    }
+}

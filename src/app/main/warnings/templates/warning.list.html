@@ -2,7 +2,8 @@
     <p>Alertas y Denuncias</p>
 </md-toolbar>
 <md-list>
-    <md-list-item class="md-3-line" ng-repeat-start="warning in wc.list" ng-click="wc.selectWarning(warning);wc.showDetailModal()">
+    <md-list-item class="md-3-line warning" ng-repeat-start="warning in wc.list" 
+                  ng-click="wc.selectWarning(warning)" ng-class="{'grey-bg md-hue-3-bg': wc.isSelected(warning.id)}">
         <md-icon class="warning-icon" md-svg-src="assets/icons/svg/robo.svg"></md-icon>
         <div class="md-list-item-text" layout="column">
             <h3>{{ warning.TypeOfWarning.WarningDesc}}</h3>
@@ -19,6 +20,6 @@
     <md-icon md-svg-src="assets/icons/svg/warning.svg"></md-icon>
 </md-button>
 -->
-<md-button class="md-fab md-fab-top-right" aria-label="Nueva den&uacute;ncia">
+<md-button class="md-fab md-fab-top-right" aria-label="Nueva den&uacute;ncia" ng-click="wc.showDetailModal()">
     <md-icon md-svg-src="assets/icons/svg/bell.svg"></md-icon>
 </md-button>
