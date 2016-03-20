@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    angular.module('kms.auth', ['kms.auth.logon'])
+    angular.module('kms.auth', ['kms.auth.logon', 'kms.auth.profile'])
             .config(config);
 
     function config() {

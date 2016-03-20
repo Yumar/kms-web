@@ -14,6 +14,7 @@
         var wc = this;
         wc.list = [];
         wc.selectedId = null;
+        wc.warningTypes = [];
 
         function selectedCallback(warning) {
             wc.selectedId = warning.id;
@@ -26,6 +27,14 @@
 //                w = data;
 //                WarningFactory.setSelected(w);
 //            });
+        }
+        
+        function getWarningTypes(){
+            WarningFactory
+                    .getTypes()
+                    .then(function(data){
+                        wc.warningTypes = data;
+                    })
         }
 
         wc.selectWarning = function (w) {
@@ -41,6 +50,7 @@
                 controller: 'WarningModalController',
                 templateUrl: 'app/main/warnings/templates/warning.edit.html',
                 parent: angular.element(document.body),
+                locals: {types: wc.warningTypes}, 
                 clickOutsideToClose: true
             }).then(function (warning) {
                 saveWarning(warning);
@@ -50,6 +60,7 @@
         }
 
         wc.list = WarningFactory.getAll();
+        getWarningTypes();
         WarningFactory.registerSelectedCallback(selectedCallback);
     }
 })();

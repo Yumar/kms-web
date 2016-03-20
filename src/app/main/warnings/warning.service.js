@@ -38,6 +38,10 @@
             return serv.warnings[id];
         };
         
+        serv.getTypes = function(){
+            return $http.get(server.url+'warningtype');
+        }
+        
         function generateAll(){
             var arr = [];
             for (var i = 0; i < 5; i++) {

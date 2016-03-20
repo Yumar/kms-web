@@ -16,7 +16,7 @@
                         <md-input-container class="md-block" flex-gt-xs>
                             <label>Tipo de Alerta</label>
                             <md-select ng-model="warning.type">
-                                <md-option ng-repeat="type in warningTypes" value="{{type.id}}">
+                                <md-option ng-repeat="type in warningTypes" value="{{type._id}}">
                                     {{type.label}}
                                 </md-option>
                             </md-select>
@@ -29,26 +29,26 @@
                     </div>
                         <md-input-container class="md-block" ng-hide="wc.useCurrentLocation">
                             <label>Direcci&oacute;n</label>
-                            <input ng-model="warning.address" type="text" ng-disabled="wc.useCurrentLocation">
+                            <input ng-model="warning.location.address" type="text" ng-disabled="wc.useCurrentLocation" googleplace>
                         </md-input-container>
                         <div layout-gt-xs="row" ng-hide="wc.useCurrentLocation">
                             <md-input-container flex>
                                 <label>Regi&oacute;n</label>
-                                <input ng-model="warning.address" type="text" ng-disabled="wc.useCurrentLocation">
+                                <input ng-model="warning.location.state" type="text" ng-disabled="wc.useCurrentLocation">
                             </md-input-container>
                             <md-input-container flex>
                                 <label>Ciudad</label>
-                                <input ng-model="warning.address" type="text" ng-disabled="wc.useCurrentLocation">
+                                <input ng-model="warning.location.city" type="text" ng-disabled="wc.useCurrentLocation">
                             </md-input-container>
                         </div>
                         <div layout-gt-xs="row" ng-hide="wc.useCurrentLocation">
                             <md-input-container flex>
                                 <label>Sector</label>
-                                <input ng-model="warning.address" type="text" ng-disabled="wc.useCurrentLocation">
+                                <input ng-model="warning.location.neighborhood" type="text" ng-disabled="wc.useCurrentLocation">
                             </md-input-container>
                             <md-input-container flex>
                                 <label>Calle</label>
-                                <input ng-model="warning.address" type="text" ng-disabled="wc.useCurrentLocation">
+                                <input ng-model="warning.location.street" type="text" ng-disabled="wc.useCurrentLocation">
                             </md-input-container>
                         </div>
                     <md-input-container class="md-block">

@@ -28,11 +28,32 @@
     'use strict';
 
     angular.module('kms.warning')
-            .controller('WarningModalController', WarningModal);
+            .controller('WarningModalController', WarningModal)
+            .directive('googleplace', function () {
+                return {
+                    require: 'ngModel',
+                    link: function (scope, element, attrs, model) {
+                        var options = {
+                            types: ['geocode'],
+                            componentRestrictions: {}
+                        };
+                        scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
+                        
+                        google.maps.event.addListener(scope.gPlace, 'place_changed', function () {
+                            scope.updateWarningLocation();
+                            scope.$apply(function () {
+                                model.$setViewValue(element.val());
+                            });
+                        });
+                    }
+                };
+            });
 
-    function WarningModal($scope, $mdDialog) {
+    function WarningModal($scope, $mdDialog, types) {
         var wmc = this;
         wmc.editable = false;
+        $scope.warningTypes = types;
+        $scope.gPlace;
 
         $scope.hide = function () {
             $mdDialog.hide();
@@ -43,6 +64,20 @@
         $scope.answer = function () {
             $mdDialog.hide(wmc.warning);
         };
+        
+        $scope.updateWarningLocation = function(){
+            console.log($scope.gPlace.getBounds());
+            updateWarningLocation($scope.warning.location, $scope.gPlace.getPlace().address_components);
+        }
+    }
+    
+    function updateWarningLocation(warningLocation, googleLocation){
+        console.log(googleLocation);
+        warningLocation.street = googleLocation[0]? angular.copy(googleLocation[0].long_name): '';
+        warningLocation.neighborhood = googleLocation[1]? angular.copy(googleLocation[1].long_name): '';
+        warningLocation.city = googleLocation[2]? angular.copy(googleLocation[2].long_name): '';
+        warningLocation.state = googleLocation[3]? angular.copy(googleLocation[3].long_name): '';
+        warningLocation.country = googleLocation[4]? angular.copy(googleLocation[4].long_name): '';
     }
 })();
 

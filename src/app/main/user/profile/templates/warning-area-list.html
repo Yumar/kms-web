@@ -1,0 +1,21 @@
+<div class="content">
+    <div class="info-line">
+        <div class="title" translate="PROFILE.OCCUPATION">Occupation</div>
+        <div class="info">{{vm.about.work.occupation}}</div>
+    </div>
+
+    <div class="info-line">
+        <div class="title" translate="PROFILE.SKILLS">Skills</div>
+        <div class="info">{{vm.about.work.skills}}</div>
+    </div>
+
+    <div class="info-line">
+        <div class="title" translate="PROFILE.JOBS">Jobs</div>
+        <table class="info jobs">
+            <tr class="job" ng-repeat="job in vm.about.work.jobs">
+                <td class="company">{{job.company}}</td>
+                <td class="date">{{job.date}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

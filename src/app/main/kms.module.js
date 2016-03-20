@@ -27,7 +27,7 @@
     'use strict';
     angular.module('kms', ['kms.map', 'kms.warning', 'kms.settings', 'uiGmapgoogle-maps'])
             .constant("server", {
-                "url": "http://kms-test.eastus.cloudapp.azure.com/kmsapi/api"
+                "url": "http://localhost:9000/api/"
             })
             .config(config);
     function config($stateProvider) {
