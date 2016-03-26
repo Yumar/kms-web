@@ -38,7 +38,7 @@
                             componentRestrictions: {}
                         };
                         scope.gPlace = new google.maps.places.Autocomplete(element[0], options);
-                        
+
                         google.maps.event.addListener(scope.gPlace, 'place_changed', function () {
                             scope.updateWarningLocation();
                             scope.$apply(function () {
@@ -50,10 +50,9 @@
             });
 
     function WarningModal($scope, $mdDialog, types) {
-        var wmc = this;
-        wmc.editable = false;
         $scope.warningTypes = types;
         $scope.gPlace;
+        $scope.warning = {};
 
         $scope.hide = function () {
             $mdDialog.hide();
@@ -62,22 +61,45 @@
             $mdDialog.cancel();
         };
         $scope.answer = function () {
-            $mdDialog.hide(wmc.warning);
+            $mdDialog.hide($scope.warning);
         };
-        
-        $scope.updateWarningLocation = function(){
-            console.log($scope.gPlace.getBounds());
+
+        $scope.updateWarningLocation = function () {
             updateWarningLocation($scope.warning.location, $scope.gPlace.getPlace().address_components);
         }
+        
+        $scope.useCurrentLocationChanged = function(){
+            if($scope.useCurrentLocation){
+                console.info("using current location")
+                $scope.gPlace.setBounds(getCurrentLocation());
+                $scope.updateWarningLocation();
+            }
+        }
     }
-    
-    function updateWarningLocation(warningLocation, googleLocation){
-        console.log(googleLocation);
-        warningLocation.street = googleLocation[0]? angular.copy(googleLocation[0].long_name): '';
-        warningLocation.neighborhood = googleLocation[1]? angular.copy(googleLocation[1].long_name): '';
-        warningLocation.city = googleLocation[2]? angular.copy(googleLocation[2].long_name): '';
-        warningLocation.state = googleLocation[3]? angular.copy(googleLocation[3].long_name): '';
-        warningLocation.country = googleLocation[4]? angular.copy(googleLocation[4].long_name): '';
+
+    function updateWarningLocation(warningLocation, googleLocation) {
+        console.log('location changed');
+        warningLocation.street = googleLocation[0] ? angular.copy(googleLocation[0].long_name) : '';
+        warningLocation.neighborhood = googleLocation[1] ? angular.copy(googleLocation[1].long_name) : '';
+        warningLocation.city = googleLocation[2] ? angular.copy(googleLocation[2].long_name) : '';
+        warningLocation.state = googleLocation[3] ? angular.copy(googleLocation[3].long_name) : '';
+        warningLocation.country = googleLocation[4] ? angular.copy(googleLocation[4].long_name) : '';
+    }
+
+    function getCurrentLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+                var geolocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+                var circle = new google.maps.Circle({
+                    center: geolocation,
+                    radius: position.coords.accuracy
+                });
+                return circle.getBounds();
+            });
+        }
     }
 })();
 

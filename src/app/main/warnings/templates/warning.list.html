@@ -6,14 +6,17 @@
                   ng-click="wc.selectWarning(warning)" ng-class="{'grey-bg md-hue-3-bg': wc.isSelected(warning.id)}">
         <md-icon class="warning-icon" md-svg-src="assets/icons/svg/robo.svg"></md-icon>
         <div class="md-list-item-text" layout="column">
-            <h3>{{ warning.TypeOfWarning.WarningDesc}}</h3>
-            <h4>{{ warning.Localitys.Sector}}</h4>
-            <p>{{ warning.Message}}</p>
+            <h3>{{ warning.type.label}}</h3>
+            <h4>{{ warning.location.neighborhood}}</h4>
+            <p>{{ warning.description}}</p>
             <span></span>
         </div>
         <md-icon class="warning-icon" md-svg-src="assets/icons/svg/location.svg"></md-icon>
     </md-list-item>
     <md-divider ng-repeat-end></md-divider>
+    <md-list-item class="warning" ng-if="wc.list.length == 0">
+        No hay denuncias o alertas para presentar.
+    </md-list-item>
 </md-list>
 <!-- 
 <md-button class="md-fab md-warn md-fab-top-left" aria-label="P&aacute;nico">

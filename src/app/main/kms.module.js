@@ -25,9 +25,10 @@
  */
 (function () {
     'use strict';
-    angular.module('kms', ['kms.map', 'kms.warning', 'kms.settings', 'uiGmapgoogle-maps'])
+    angular.module('kms', ['kms.map', 'kms.warning', 'kms.settings', 'kms.auth', 'uiGmapgoogle-maps'])
             .constant("server", {
-                "url": "http://localhost:9000/api/"
+                "api": "http://localhost:9000/api/",
+                "url": "http://localhost:9000/"
             })
             .config(config);
     function config($stateProvider) {
@@ -52,7 +53,7 @@
                             controller: 'SettingsController as sc'
                         },
                         'toolbar@kms': {
-                            templateUrl: 'app/toolbar/layouts/vertical-navigation/toolbar.html',
+                            templateUrl: 'app/main/user/toolbar/toolbar.html',
                             controller: 'ToolbarController as vm'
                         }
                     }

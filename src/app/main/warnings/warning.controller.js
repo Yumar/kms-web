@@ -10,7 +10,7 @@
     angular.module('kms.warning')
             .controller('WarningController', WarningController);
 
-    function WarningController(WarningFactory, $mdDialog) {
+    function WarningController(WarningFactory, /* UserFactory, */ $mdDialog) {
         var wc = this;
         wc.list = [];
         wc.selectedId = null;
@@ -21,19 +21,16 @@
         }
 
         function saveWarning(w) {
-            console.info(w);
-//            var savePromise = WarningFactory.save(w);
-//            savePromise.then(function(data){
-//                w = data;
-//                WarningFactory.setSelected(w);
-//            });
+//            w.user = UserFactory.getCurrentUser();
+            console.info("a warning created  ", w);
+            WarningFactory.createWarning(w);
         }
         
         function getWarningTypes(){
             WarningFactory
                     .getTypes()
-                    .then(function(data){
-                        wc.warningTypes = data;
+                    .then(function(result){
+                        wc.warningTypes = result.data;
                     })
         }
 
@@ -53,6 +50,7 @@
                 locals: {types: wc.warningTypes}, 
                 clickOutsideToClose: true
             }).then(function (warning) {
+                if(warning && !warning._id)
                 saveWarning(warning);
             }, function () {
 

@@ -8,67 +8,64 @@
     'use strict';
 
     angular.module('kms.warning')
-            .factory('WarningFactory', ['$http', 'server', '$rootScope', '$timeout', WarningFactory]);
+            .factory('WarningFactory', ['$http', 'server', 'warningSocket', WarningFactory]);
 
-    function WarningFactory($http, server, $rootScope, $timeout) {
+    function WarningFactory($http, server, warningSocket) {
         var serv = {
-            warnings:[],
-            selectedCallBacks:[],
-            selected:null
+            warnings: [],
+            selectedCallBacks: [],
+            selected: null
         };
-        
-        serv.registerSelectedCallback = function(callback){
+
+        serv.registerSelectedCallback = function (callback) {
             serv.selectedCallBacks.push(callback);
         }
-        
-        serv.setSelected = function(warning){
+
+        serv.setSelected = function (warning) {
             serv.selected = warning;
             notifySelected(warning);
         }
 
+        serv.createWarning = function (warning, callback) {
+            warningSocket.emit('warning:create', warning, callback);
+        }
+
+        function listenAllWarnings() {
+            warningSocket.on('warning:list', function (data) {
+                console.info('warning:list recieved', data);
+                serv.warnings = data;
+            });
+        }
+
+        function listenNewWarning() {
+            warningSocket.on('warning:new', function (data) {
+                console.info('warning:new recieved', data);
+                serv.warnings.push(data);
+            });
+        }
+
         serv.getAll = function () {
-            if(!serv.warnings || serv.warnings.length < 1){
-                serv.warnings = generateAll();
-            }
-            
-            return serv.warnings;    
+            return serv.warnings;
         };
 
         serv.get = function (id) {
             return serv.warnings[id];
         };
-        
-        serv.getTypes = function(){
-            return $http.get(server.url+'warningtype');
+
+        serv.getTypes = function () {
+            return $http.get(server.api + 'warningtype');
         }
-        
-        function generateAll(){
-            var arr = [];
-            for (var i = 0; i < 5; i++) {
-                arr.push({
-                    id:i,
-                    Message:"Mensaje de alerta"+i,
-                    TypeOfWarning:{WarningDesc:"Robo"},
-                    Localitys:{
-                        latitude:18.485264+   (i*0.001), 
-                        longitude:-69.825685+ (i*0.001),
-                        Address:"direccion "+i,
-                        City:"Ciudad "+i,
-                        Country:"Pais "+i,
-                        Sector:"Sector "+i
-                    }
-                });
-            }
-            return arr;
-        }
-        
-        function notifySelected(warning){
-            angular.forEach(serv.selectedCallBacks, function(callback){
+
+        function notifySelected(warning) {
+            angular.forEach(serv.selectedCallBacks, function (callback) {
                 callback(warning);
             })
         }
-        
+
+        listenAllWarnings();
+        listenNewWarning();
+
         return serv;
-        
+
     }
 })();

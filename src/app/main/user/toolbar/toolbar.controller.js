@@ -7,10 +7,10 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $mdSidenav, $translate, $mdToast)
+    function ToolbarController($rootScope, $mdSidenav, UserFactory, $scope)
     {
         var vm = this;
-
+        $scope.user = UserFactory.getCurrentUser();
         // Data
         $rootScope.global = {
             search: ''
@@ -21,26 +21,8 @@
         // Methods
         vm.toggleSidenav = toggleSidenav;
         vm.logout = logout;
-        vm.changeLanguage = changeLanguage;
-        vm.setUserStatus = setUserStatus;
-        vm.toggleHorizontalMobileMenu = toggleHorizontalMobileMenu;
 
         //////////
-
-        init();
-
-        /**
-         * Initialize
-         */
-        function init()
-        {
-            // Select the first status as a default
-            vm.userStatus = vm.userStatusOptions[0];
-
-            // Get the selected language directly from angular-translate module setting
-            vm.selectedLanguage = vm.languages[$translate.preferredLanguage()];
-        }
-
 
         /**
          * Toggle sidenav
@@ -51,6 +33,9 @@
         {
             $mdSidenav(sidenavId).toggle();
         }
+        
+        //Login
+        UserFactory.login("user", "pass");
 
         /**
          * Logout Function
@@ -58,14 +43,6 @@
         function logout()
         {
             // Do logout here..
-        }
-
-        /**
-         * Toggle horizontal mobile menu
-         */
-        function toggleHorizontalMobileMenu()
-        {
-            vm.bodyEl.toggleClass('ms-navigation-horizontal-mobile-menu-active');
         }
     }
 

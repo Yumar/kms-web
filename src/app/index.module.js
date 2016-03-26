@@ -14,9 +14,6 @@
             // Navigation
             'app.navigation',
 
-            // Toolbar
-            'app.toolbar',
-
             // Quick panel
             'app.quick-panel',
 
