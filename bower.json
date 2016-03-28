@@ -52,7 +52,9 @@
       ]
     },
     "angular-google-maps":{
-        
+        "main": [
+          "./dist/angular-google-maps.js"
+        ]
     },
     "perfect-scrollbar": {
       "main": [
