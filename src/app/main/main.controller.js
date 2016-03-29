@@ -7,8 +7,10 @@
         .controller('MainController', MainController);
 
     /** @ngInject */
-    function MainController($scope, $rootScope/*, UserFactory */)
-    {
+    function MainController($scope, $rootScope, UserFactory){
+        //Login
+        UserFactory.login("user", "pass");
+        
         // Remove the splash screen
         $scope.$on('$viewContentAnimationEnded', function (event)
         {

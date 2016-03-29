@@ -6,11 +6,18 @@
 
     function userFact(server, $http) {
         var serv = {
-            currentUser: null
+            currentUser: null,
+            currentUserCallbacks: []
         };
         
         serv.getCurrentUser = function(){
+            console.info(this.currentUser);
             return this.currentUser;
+        }
+        
+        serv.setCurrentUser = function (user){
+            this.currentUser = user;
+            currentUserChanged(user);
         }
 
         serv.login = function(user, pass) {
@@ -25,10 +32,11 @@
                         password: pass
                     }
             ).then(function (result, event) {
-                serv.currentUser = result.data;
+                console.log(result);
+                serv.setCurrentUser(result.data);
                 return event;
             }, function () {
-                serv.currentUser = null;
+                serv.setCurrentUser(null);
                 return event;
             })
         };
@@ -51,6 +59,16 @@
             return $http.patch(server.api + 'user/' + userid, {
                 active: active
             });
+        }
+        
+        serv.registerCurrentUserCallback = function(callback){
+            serv.currentUserCallbacks.push(callback)
+        }
+        
+        function currentUserChanged(user) {
+            angular.forEach(serv.currentUserCallbacks, function (callback) {
+                callback(user);
+            })
         }
 
         return serv;

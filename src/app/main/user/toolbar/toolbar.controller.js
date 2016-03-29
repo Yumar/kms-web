@@ -10,7 +10,7 @@
     function ToolbarController($rootScope, $mdSidenav, UserFactory, $scope)
     {
         var vm = this;
-        $scope.user = UserFactory.getCurrentUser();
+        
         // Data
         $rootScope.global = {
             search: ''
@@ -34,8 +34,7 @@
             $mdSidenav(sidenavId).toggle();
         }
         
-        //Login
-        UserFactory.login("user", "pass");
+        
 
         /**
          * Logout Function
@@ -43,6 +42,15 @@
         function logout()
         {
             // Do logout here..
+        }
+        
+        //get current user from factory
+        $scope.user = UserFactory.getCurrentUser();
+        
+        //watch for current user changes from factory
+        UserFactory.registerCurrentUserCallback(userChangedCallback);
+        function userChangedCallback (user){
+            $scope.user = user;
         }
     }
 

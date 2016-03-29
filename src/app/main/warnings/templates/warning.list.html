@@ -3,12 +3,12 @@
 </md-toolbar>
 <md-list>
     <md-list-item class="md-3-line warning" ng-repeat-start="warning in wc.list" 
-                  ng-click="wc.selectWarning(warning)" ng-class="{'grey-bg md-hue-3-bg': wc.isSelected(warning.id)}">
+                  ng-click="wc.selectWarning(warning)" ng-class="{'grey-bg md-hue-3-bg': wc.isSelected(warning._id)}">
         <md-icon class="warning-icon" md-svg-src="assets/icons/svg/robo.svg"></md-icon>
         <div class="md-list-item-text" layout="column">
             <h3>{{ warning.type.label}}</h3>
             <h4>{{ warning.location.neighborhood}}</h4>
-            <p>{{ warning.description}}</p>
+            <p>{{ warning.reportDate | date: 'MMM d, y': 'es_DO'}} - {{ warning.description}}</p>
             <span></span>
         </div>
         <md-icon class="warning-icon" md-svg-src="assets/icons/svg/location.svg"></md-icon>

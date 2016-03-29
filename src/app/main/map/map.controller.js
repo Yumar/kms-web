@@ -32,11 +32,16 @@
         }
         
         function selectedFocusCallback(warning){
-            focusWarning(warning.Localitys);            
+            focusWarning(warning.location);            
+        }
+        
+        function warningsCallback(warnings){
+            mp.warnings = warnings;
+            console.info("warnings in map", warnings);
         }
 
-        mp.warnings = WarningFactory.getAll();
         WarningFactory.registerSelectedCallback(selectedFocusCallback);
+        WarningFactory.registerWarningsCallBacks(warningsCallback);
         
     }
 })();

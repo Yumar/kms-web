@@ -10,18 +10,22 @@
     angular.module('kms.warning')
             .controller('WarningController', WarningController);
 
-    function WarningController(WarningFactory, /* UserFactory, */ $mdDialog) {
+    function WarningController(WarningFactory, UserFactory, $mdDialog) {
         var wc = this;
         wc.list = [];
         wc.selectedId = null;
         wc.warningTypes = [];
 
         function selectedCallback(warning) {
-            wc.selectedId = warning.id;
+            wc.selectedId = warning._id;
+        }
+        
+        function warningsCallback(warnings){
+            wc.list = warnings;
         }
 
         function saveWarning(w) {
-//            w.user = UserFactory.getCurrentUser();
+            w.user = UserFactory.getCurrentUser();
             console.info("a warning created  ", w);
             WarningFactory.createWarning(w);
         }
@@ -56,9 +60,9 @@
 
             });
         }
-
-        wc.list = WarningFactory.getAll();
+        
         getWarningTypes();
         WarningFactory.registerSelectedCallback(selectedCallback);
+        WarningFactory.registerWarningsCallBacks(warningsCallback);
     }
 })();
