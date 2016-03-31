@@ -27,8 +27,8 @@
     'use strict';
     angular.module('kms', ['kms.map', 'kms.warning', 'kms.settings', 'kms.auth', 'uiGmapgoogle-maps'])
             .constant("server", {
-                "api": "http://localhost:9000/api/",
-                "url": "http://localhost:9000/"
+                "api": "http://localhost/api/",
+                "url": "http://localhost/"
             })
             .config(config);
     function config($stateProvider) {
