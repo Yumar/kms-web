@@ -10,8 +10,17 @@
     angular.module('kms.auth.register')
             .controller('RegisterController', register);
 
-    function register() {
-        regControl =  this;
+    function register($scope, $rootScope, UserFactory) {
+        var regControl =  this;
+        
+        // Remove the splash screen
+        $scope.$on('$viewContentAnimationEnded', function (event)
+        {
+            if ( event.targetScope.$id === $scope.$id )
+            {
+                $rootScope.$broadcast('msSplashScreen::remove');
+            }
+        });
     }
 })();
 

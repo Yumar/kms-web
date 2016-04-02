@@ -10,7 +10,18 @@
     angular.module('kms.auth.register', [])
             .config(config);
 
-    function config() {
+    function config($stateProvider) {        
+        // State
+        $stateProvider.state('kms.register', {
+            url: '/register',
+            views: {
+                'main@': {
+                    templateUrl: 'app/main/user/register/register.html',
+                    controller: 'RegisterController as regC'
+                }
+            },
+            bodyClass: 'register'
+        });
     }
 
 })();

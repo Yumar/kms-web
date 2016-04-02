@@ -15,7 +15,8 @@
         "md-sidenav": {},
         "md-list-item": {},
         "md-button": {},
-        "md-list": {}
+        "md-list": {},
+        "md-input-container": {}
     },
     "attributes": {
         "layout": {},
@@ -25,6 +26,7 @@
         "center": {},
         "ui-view": {},
         "zoom": {},
-        "ng-repeat": {}
+        "ng-repeat": {},
+        "layout-gt-xs": {}
     }
 }

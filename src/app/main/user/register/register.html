@@ -1,0 +1,180 @@
+<div id="register" class="flex-scrollable" layout="column" ms-scroll>
+    <div id="register-form-wrapper" layout="column" layout-align="center center">
+        <div id="register-form" class="md-whiteframe-8dp">
+            <div class="logo">
+                <img src="assets/images/logos/kms.png" alt=""/>
+            </div>
+
+            <div class="title">Formulario de Registro</div>
+
+
+            <form name="registerForm" novalidate>
+                <div layout="row" flex>
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input name="Name" ng-model="vm.form.Name" placeholder="Nombres"
+                               required>
+                        <div ng-messages="registerForm.Name.$error" ng-show="registerForm.Name.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>El campo Nombre es obligatorio</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input name="LastName" ng-model="vm.form.LastName" placeholder="Apellidos"
+                               required>
+                        <div ng-messages="registerForm.LastName.$error" ng-show="registerForm.LastName.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>El campo Apellido es obligatorio</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout="row" flex>
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input name="genre" ng-model="vm.form.genre" placeholder="Genero"
+                               required>
+                        <div ng-messages="registerForm.genre.$error" ng-show="registerForm.genre.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>El campo G&eacute;nero es obligatorio</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input name="DateOfBirth" ng-model="vm.form.DateOfBirth" placeholder="Fecha de Nacimiento"
+                               required>
+                        <div ng-messages="registerForm.DateOfBirth.$error" ng-show="registerForm.DateOfBirth.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>El campo Fecha de Nacimiento es obligatorio</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input name="phone" ng-model="vm.form.phone" placeholder="Tel&eacute;fono"                           
+                               type="tel" required>
+                        <div ng-messages="registerForm.phone.$error" ng-show="registerForm.phone.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>El campo Tel&eacute;fono es obligatorio</span>
+                            </div>
+                            <div ng-message="phone">
+                                <span>El campo Tel&eacute;fono debe contener un n&uacute;mero telef&oacute;nico valido</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <div layout-gt-xs="row">
+                    <md-input-container class="md-block" flex>
+                        <input placeholder="Direcci&oacute;n" 
+                               ng-model="warning.location.address" type="text" 
+                               ng-disabled="wc.useCurrentLocation" googleplace>
+                    </md-input-container>
+                    <md-input-container>
+                        <md-checkbox ng-model="useCurrentLocation" aria-label="Usar Localidad Actual" 
+                                     ng-change="useCurrentLocationChanged()">
+                            Usar Localidad Actual
+                        </md-checkbox>
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row" ng-hide="wc.useCurrentLocation">
+                    <md-input-container flex>
+                        <input placeholder="Regi&oacute;n" ng-model="warning.location.state" type="text" ng-disabled="wc.useCurrentLocation">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <input placeholder="Ciudad" ng-model="warning.location.city" type="text" ng-disabled="wc.useCurrentLocation">
+                    </md-input-container>
+                </div>
+                <div layout-gt-xs="row" ng-hide="wc.useCurrentLocation">
+                    <md-input-container flex>
+                        <input placeholder="Sector" ng-model="warning.location.neighborhood" type="text" ng-disabled="wc.useCurrentLocation">
+                    </md-input-container>
+                    <md-input-container flex>
+                        <input placeholder="Calle" ng-model="warning.location.street" type="text" ng-disabled="wc.useCurrentLocation">
+                    </md-input-container>
+                </div>
+
+                <div layout="row" flex>
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input type="UserEmail" name="UserEmail" ng-model="vm.form.UserEmail" placeholder="Email"
+                               ng-pattern="/^.+@.+\..+$/" required>
+                        <div ng-messages="registerForm.UserEmail.$error" ng-show="registerForm.UserEmail.$touched" role="alert"
+                             multiple>
+                            <div ng-message="required">
+                                <span>Email field is required</span>
+                            </div>
+                            <div ng-message="pattern">
+                                <span>Email must be a valid e-mail address</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input type="UserEmail" name="UserEmail" ng-model="vm.form.UserEmail" placeholder="Confirmacion de Email"
+                               ng-pattern="/^.+@.+\..+$/" required>
+                        <div ng-messages="registerForm.UserEmail.$error" ng-show="registerForm.UserEmail.$touched" role="alert"
+                             multiple>
+                            <div ng-message="required">
+                                <span>Email field is required</span>
+                            </div>
+                            <div ng-message="pattern">
+                                <span>Email must be a valid e-mail address</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                </div>
+                <div layout="row" flex>
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input type="password" name="password" ng-model="vm.form.Passw" placeholder="Contrase&ntilde;a"
+                               required>
+                        <div ng-messages="registerForm.Passw.$error" ng-show="registerForm.Passw.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>Password field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+
+                    <md-input-container class="md-block" md-no-float flex>
+                        <input type="password" name="password" ng-model="vm.form.Passw" placeholder="Confirmacion de Contrase&ntilde;a"
+                               required>
+                        <div ng-messages="registerForm.Passw.$error" ng-show="registerForm.Passw.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>Password field is required</span>
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+
+                <md-input-container class="md-block" md-no-float>
+
+                    <div class="terms" layout="row" layout-align="center center">
+                        <md-checkbox name="terms" ng-model="data.cb1" aria-label="I read and accept" required></md-checkbox>
+                        <div layout="row" layout-sm="column" layout-align="start center">
+                            <span>I read and accept</span>
+                            <a href="#" class="md-accent-color">terms and conditions</a>
+                        </div>
+                    </div>
+
+                    <md-button type="submit" class="md-raised md-accent" aria-label="CREATE MY ACCOUNT"
+                               ng-disabled="registerForm.$invalid || registerForm.$pristine">
+                        CREATE MY ACCOUNT
+                    </md-button>
+            </form>
+
+            <div class="login" layout="row" layout-xs="column" layout-align="center center">
+                <span class="text">Already have an account?</span>
+                <a class="link" ui-sref="kms.login">Log in</a>
+            </div>
+        </div>
+    </div>
+</div>
