@@ -20,8 +20,8 @@
             wc.selectedId = warning._id;
         }
         
-        function warningsCallback(warnings){
-            wc.list = warnings;
+        function warningsCallback(){
+            wc.list = WarningFactory.warnings;
         }
 
         function saveWarning(w) {

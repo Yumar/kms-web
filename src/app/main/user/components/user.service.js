@@ -20,7 +20,7 @@
             currentUserChanged(user);
         }
 
-        serv.login = function(user, pass) {
+        serv.login = function(user, pass, callback) {
             /*
              * sends a login request and saves the result 
              * on the service so could be used as session
@@ -34,10 +34,10 @@
             ).then(function (result, event) {
                 console.log(result);
                 serv.setCurrentUser(result.data);
-                return event;
-            }, function () {
+                callback(event);
+            }, function (event) {
                 serv.setCurrentUser(null);
-                return event;
+                callback(event);
             })
         };
 

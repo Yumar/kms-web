@@ -8,7 +8,7 @@
 
     'use strict';
     
-    angular.module('kms.map', [])
+    angular.module('kms.map', ['uiGmapgoogle-maps'])
             .config(config);
     
     function config(){

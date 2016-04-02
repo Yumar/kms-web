@@ -72,7 +72,7 @@
         
         function notifyWaningsChanged() {
             angular.forEach(serv.warningsCallBacks, function (callback) {
-                callback(serv.warnings);
+                callback();
             })
         }
         

@@ -17,8 +17,8 @@
     <div layout="row" layout-align="start center">
         
         <md-menu-bar id="user-menu">
-            <md-button ng-if="!user">
-                Login
+            <md-button ng-if="!user" ui-sref="kms.login">
+                Iniciar Sesi&oacute;n
             </md-button>
             <md-menu md-position-mode="left bottom" ng-if="user">
                 <md-button class="user-button" ng-click="$mdOpenMenu()"
@@ -41,14 +41,14 @@
                     
                     <md-menu-item class="md-indent" ui-sref="kms.profile">
                         <md-icon md-font-icon="icon-account" class="icon"></md-icon>
-                        <md-button ui-sref='kms.profile'>My Profile</md-button>
+                        <md-button ui-sref='kms.profile'>Perfil</md-button>
                     </md-menu-item>                    
 
                     <md-menu-divider></md-menu-divider>
 
                     <md-menu-item class="md-indent">
                         <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
-                        <md-button ng-click="vm.logout()">Logout</md-button>
+                        <md-button ng-click="vm.logout()">Cerrar Sesi&oacute;n</md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>

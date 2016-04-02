@@ -1,0 +1,80 @@
+<div id="layout-content-only" class="template-layout" layout="column" flex>
+    <md-content id="content" class="animate-slide-up md-background md-hue-1" flex>
+        <div id="login" class="flex-scrollable" layout="column" ms-scroll>
+            <div id="login-form-wrapper" layout="column" layout-align="center center">
+                <div id="login-form" class="md-whiteframe-8dp">
+                    <div class="logo">
+                        <img src="assets/images/logos/kms.png" alt=""/>
+                    </div>
+
+                    <div class="title">Inicia sesi&oacute;n con tu cuenta</div>
+
+                    <form name="loginForm" novalidate ng-submit="lc.login()">
+                        <md-input-container class="md-block" md-no-float>
+                            <input type="email" name="email" ng-model="lc.form.email" placeholder="Email"
+                                   ng-pattern="/^.+@.+\..+$/" required>
+                            <div ng-messages="loginForm.email.$error" ng-show="loginForm.email.$touched" role="alert" multiple>
+                                <div ng-message="required">
+                                    <span>El email es requerido</span>
+                                </div>
+                                <div ng-message="pattern">
+                                    <span>Debe utilizarse un email v&aacute;lido</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" md-no-float>
+                            <input type="password" name="password" ng-model="lc.form.password" placeholder="Contrase&ntilde;a" required>
+                            <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$touched" role="alert">
+                                <div ng-message="required">
+                                    <span>La contrase&ntilde;a es requerida</span>
+                                </div>
+                            </div>
+                        </md-input-container>
+
+                        <div class="remember-forgot-password" layout="row" layout-xs="column"
+                             layout-align="space-between center">
+                            <md-checkbox class="remember-me" ng-model="data.cb1" aria-label="Remember Me">
+                                <span>Recuerdame</span>
+                            </md-checkbox>
+
+                            <a ui-sref="app.pages_auth_forgot-password" class="forgot-password md-accent-color">Forgot Password?</a>
+                        </div>
+
+                        <md-button type="submit" class="md-raised md-accent" aria-label="Iniciar Sesi&oacute;n"
+                                   ng-disabled="loginForm.$invalid || loginForm.$pristine">
+                            Iniciar Sesion
+                        </md-button>
+                    </form>
+
+                    <div class="separator">
+                        <span class="text">&Oacute;</span>
+                    </div>
+
+                    <md-button class="md-raised google">
+                        <div layout="row" layout-align="center center">
+                            <span>
+                                <md-icon md-font-icon="icon-google-plus" class="s16"></md-icon>
+                                <span>Iniciar sesion con Google</span>
+                            </span>
+                        </div>
+                    </md-button>
+
+                    <md-button class="md-raised facebook">
+                        <div layout="row" layout-align="center center">
+                            <span>
+                                <md-icon md-font-icon="icon-facebook" class="s16"></md-icon>
+                                <span>Iniciar sesion con Facebook</span>
+                            </span>
+                        </div>
+                    </md-button>
+
+                    <div class="register" layout="row" layout-sm="column" layout-align="center center">
+                        <span class="text">¿No tienes una cuenta?</span>
+                        <a class="link" ui-sref="kms.logon">Registrate</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </md-content>
+</div>

@@ -1,0 +1,35 @@
+(function ()
+{
+    'use strict';
+
+    angular
+            .module('kms.auth.login')
+            .controller('LoginController', LoginController);
+
+    /** @ngInject */
+    function LoginController(UserFactory, $state)
+    {
+        var lc = this;
+        lc.error;
+        lc.login = login;
+
+        function loginCallback(event) {
+            if(event){
+                lc.error = event.data;
+                console.log(lc.error);
+            }else{
+                $state.go('kms');
+            }
+        }
+
+        function login() {
+            if (lc.form.email && lc.form.password) {
+                console.info("email:", lc.form.email);
+                UserFactory.login(lc.form.email, lc.form.password, loginCallback);
+            }
+
+        }
+
+
+    }
+})();

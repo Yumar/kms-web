@@ -25,7 +25,7 @@
  */
 (function () {
     'use strict';
-    angular.module('kms', ['kms.map', 'kms.warning', 'kms.settings', 'kms.auth', 'uiGmapgoogle-maps'])
+    angular.module('kms', ['kms.map', 'kms.warning', 'kms.settings', 'kms.auth'])
             .constant("server", {
                 "api": "http://localhost/api/",
                 "url": "http://localhost/"
