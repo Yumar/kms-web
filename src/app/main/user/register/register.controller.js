@@ -7,12 +7,12 @@
 (function () {
     'use strict';
 
-    angular.module('kms.auth.logon', [])
-            .config(config);
+    angular.module('kms.auth.register')
+            .controller('RegisterController', register);
 
-    function config() {
+    function register() {
+        regControl =  this;
     }
-
 })();
 
 

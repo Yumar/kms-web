@@ -7,12 +7,12 @@
 (function () {
     'use strict';
 
-    angular.module('kms.auth.logon')
-            .factory('LogonFactory', logon());
+    angular.module('kms.auth.register', [])
+            .config(config);
 
-    function logon() {
-        var serv = {};
-
-        return serv;
+    function config() {
     }
+
 })();
+
+
