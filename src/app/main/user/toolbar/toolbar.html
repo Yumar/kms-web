@@ -25,7 +25,7 @@
                            aria-label="Configuraciones de usario">
                     <div layout="row" layout-align="space-between center">
                         <div class="avatar-wrapper">
-                            <img md-menu-align-target class="avatar" ng-src="assets/images/avatars/profile{{user._id}}.jpg">
+                            <img md-menu-align-target class="avatar" ng-src="assets/images/avatars/{{user.profilePictureUrl}}.jpg">
                         </div>
                         <span class="username" hide-xs>{{user.firstname}}</span>
                         <md-icon md-font-icon="icon-chevron-down"
@@ -36,7 +36,7 @@
                 <md-menu-content width="3">
                     <md-menu-item class="md-indent" ui-sref="kms">
                         <md-icon md-font-icon="icon-email" class="icon"></md-icon>
-                        <md-button>Inbox</md-button>
+                        <md-button>Notificaciones</md-button>
                     </md-menu-item>
                     
                     <md-menu-item class="md-indent" ui-sref="kms.profile">
@@ -48,7 +48,7 @@
 
                     <md-menu-item class="md-indent">
                         <md-icon md-font-icon="icon-logout" class="icon"></md-icon>
-                        <md-button ng-click="vm.logout()">Cerrar Sesi&oacute;n</md-button>
+                        <md-button ng-click="logout()">Cerrar Sesi&oacute;n</md-button>
                     </md-menu-item>
                 </md-menu-content>
             </md-menu>

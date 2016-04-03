@@ -24,7 +24,6 @@
 
         function login() {
             if (lc.form.email && lc.form.password) {
-                console.info("email:", lc.form.email);
                 UserFactory.login(lc.form.email, lc.form.password, loginCallback);
             }
 

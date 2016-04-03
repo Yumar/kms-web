@@ -17,7 +17,7 @@
             views: {
                 'main@': {
                     templateUrl: 'app/main/user/register/register.html',
-                    controller: 'RegisterController as regC'
+                    controller: 'RegisterController as regControl'
                 }
             },
             bodyClass: 'register'

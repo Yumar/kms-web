@@ -7,14 +7,9 @@
         .controller('ToolbarController', ToolbarController);
 
     /** @ngInject */
-    function ToolbarController($rootScope, $mdSidenav, UserFactory, $scope)
+    function ToolbarController($rootScope, $mdSidenav, UserFactory, $scope, $state)
     {
         var vm = this;
-        
-        // Data
-        $rootScope.global = {
-            search: ''
-        };
 
         vm.bodyEl = angular.element('body');
 
@@ -41,11 +36,15 @@
          */
         function logout()
         {
-            // Do logout here..
+            UserFactory.logout();
+            $state.go('kms.login');
         }
         
         //get current user from factory
         $scope.user = UserFactory.getCurrentUser();
+        
+        //logout
+        $scope.logout = logout;
         
         //watch for current user changes from factory
         UserFactory.registerCurrentUserCallback(userChangedCallback);
