@@ -10,8 +10,13 @@
     angular.module('kms.auth.register')
             .controller('RegisterController', register);
 
-    function register($scope, $rootScope, UserFactory, $mdDialog) {
+    function register($scope, $rootScope, UserFactory, $mdDialog, locationUtils) {
         var regControl = this;
+        $scope.gPlace;
+        $scope.gPlaceEvents = [];
+        $scope.updateLocation = function (){
+            locationUtils.translateGoogleLocation($scope.form.location, $scope.gPlace.getPlace());
+        }
 
         // Remove the splash screen
         $scope.$on('$viewContentAnimationEnded', function (event)
@@ -28,6 +33,18 @@
 
         regControl.validateRegisterFrom = function () {
 
+        }
+        
+        //init
+        registerPlacesChangesListener();
+        
+        function registerPlacesChangesListener() {
+            var listener = function () {
+                $scope.updateLocation();
+                $scope.$apply();
+            }
+
+            $scope.gPlaceEvents.push(listener);
         }
 
         function sendRegistrationRequest(userFrom) {
