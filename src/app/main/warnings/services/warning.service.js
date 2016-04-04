@@ -61,6 +61,7 @@
                 console.info('warning:new recieved', data);
                 serv.warnings.push(data);
                 notifyWaningsChanged();
+                serv.setSelected(data)
             });
         }
 

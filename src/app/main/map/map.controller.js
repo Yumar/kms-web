@@ -35,13 +35,14 @@
             focusWarning(warning.location);            
         }
         
-        function warningsCallback(warnings){
-            mp.warnings = warnings;
-            console.info("warnings in map", warnings);
+        function warningsCallback(){
+            mp.warnings = WarningFactory.warnings;
+            console.info("warnings in map", mp.warnings);
         }
 
         WarningFactory.registerSelectedCallback(selectedFocusCallback);
         WarningFactory.registerWarningsCallBacks(warningsCallback);
+        warningsCallback();
         
     }
 })();
