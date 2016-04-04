@@ -61,6 +61,7 @@
             });
         }
         
+        warningsCallback();
         getWarningTypes();
         WarningFactory.registerSelectedCallback(selectedCallback);
         WarningFactory.registerWarningsCallBacks(warningsCallback);
