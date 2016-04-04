@@ -8,7 +8,7 @@
             <div class="title">Formulario de Registro</div>
 
 
-            <form name="registerForm" novalidate ng-submit="regControl.registerFormPost()">
+            <form name="registerForm" novalidate ng-submit="registerForm.$valid && regControl.registerFormPost()">
                 <div layout="row" flex>
                     <md-input-container class="md-block" md-no-float flex>
                         <input name="firstname" ng-model="form.firstname" placeholder="Nombre" required>
@@ -120,12 +120,14 @@
                     </md-input-container>
 
                     <md-input-container class="md-block" md-no-float flex>
-                        <input type="email" name="email" ng-model="form.email" placeholder="Confirmacion de Email"
-                               ng-pattern="/^.+@.+\..+$/" required>
-                        <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$touched" role="alert"
-                             multiple>
+                        <input type="email" name="email" ng-model="form.emailConfirm" placeholder="Confirmaci&oacute;n de Email"  
+                            ng-match="form.email" required>
+                        <div ng-messages="registerForm.emailConfirmation.$error" ng-show="registerForm.emailConfirmation.$touched" role="alert" multiple>
                             <div ng-message="required">
-                                <span>La confirmacion de email es requerida</span>
+                                <span>La confirmaci&oacute;n de email es requerida</span>
+                            </div>
+                            <div ng-message="match">
+                                <span>La confirmaci&oacute;n de email debe ser identica al email</span>
                             </div>
                         </div>
                     </md-input-container>
@@ -144,12 +146,14 @@
                     </md-input-container>
 
                     <md-input-container class="md-block" md-no-float flex>
-                        <input type="password" name="passwordConfirmation" ng-model="form.password" placeholder="Confirmacion de Contrase&ntilde;a"
-                               required>
-                        <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched"
-                             role="alert">
+                        <input type="password" name="passwordConfirmation" ng-model="form.passwordConfirm" placeholder="Confirmaci&oacute;n de Contrase&ntilde;a"
+                               ng-match="form.password" required>
+                        <div ng-messages="registerForm.passwordConfirmation.$error" ng-show="registerForm.passwordConfirmation.$touched" role="alert" multiple>
                             <div ng-message="required">
                                 <span>La confirmaci&oacute;n de la contrase&ntilde;a es requerida.</span>
+                            </div>
+                            <div ng-message="match">
+                                <span>La confirmaci&oacute;n de contrase&ntilde;a debe ser identica a la contrase&ntilde;a</span>
                             </div>
                         </div>
                     </md-input-container>
