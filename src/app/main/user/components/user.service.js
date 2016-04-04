@@ -40,15 +40,14 @@
         };
 
         serv.logout = function () {
-            $http.delete(server.api + 'login')
-                    .then(function () {
-                        serv.currentUser = null;
-                        currentUserChanged();
-                    });
+//            $http.delete(server.api + 'login')
+//                    .then(function () {
+                        serv.setCurrentUser(null);
+//                    });
         };
 
         serv.register = function (user) {
-            return $http.post(server.api + 'user', user);
+            return $http.post(server.api + 'user', {"form": user});
         }
 
         serv.changeStatus = function (userid, active) {

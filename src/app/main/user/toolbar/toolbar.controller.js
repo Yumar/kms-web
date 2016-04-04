@@ -41,15 +41,15 @@
         }
         
         //get current user from factory
-        $scope.user = UserFactory.getCurrentUser();
+        userChangedCallback();
         
         //logout
         $scope.logout = logout;
         
         //watch for current user changes from factory
         UserFactory.registerCurrentUserCallback(userChangedCallback);
-        function userChangedCallback (user){
-            $scope.user = user;
+        function userChangedCallback (){
+            $scope.user = UserFactory.getCurrentUser();
         }
     }
 

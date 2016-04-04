@@ -8,11 +8,11 @@
             <div class="title">Formulario de Registro</div>
 
 
-            <form name="registerForm" novalidate>
+            <form name="registerForm" novalidate ng-submit="regControl.registerFormPost()">
                 <div layout="row" flex>
                     <md-input-container class="md-block" md-no-float flex>
-                        <input name="name" ng-model="form.name" placeholder="Nombre" required>
-                        <div ng-messages="registerForm.name.$error" ng-show="registerForm.name.$touched"
+                        <input name="firstname" ng-model="form.firstname" placeholder="Nombre" required>
+                        <div ng-messages="registerForm.firstname.$error" ng-show="registerForm.firstname.$touched"
                              role="alert">
                             <div ng-message="required">
                                 <span>El campo Nombre es obligatorio</span>
@@ -32,10 +32,13 @@
                     </md-input-container>
                 </div>
 
-                <div layout="row" flex>
-                    <md-input-container class="md-block" md-no-float flex>
-                        <input name="genre" ng-model="form.genre" placeholder="Genero"
-                               required>
+                <div layout="row" flex>                    
+                    <md-input-container md-no-float flex id="genre-container">
+                        <p id="genre-label" flex>Género</p>                        
+                        <md-radio-group name="genre" ng-model="form.genre" required layout="row">
+                            <md-radio-button value="Masculine">Masculino</md-radio-button>
+                            <md-radio-button value="Femenine">Femenino</md-radio-button>
+                        </md-radio-group>
                         <div ng-messages="registerForm.genre.$error" ng-show="registerForm.genre.$touched"
                              role="alert">
                             <div ng-message="required">
@@ -45,9 +48,10 @@
                     </md-input-container>
 
                     <md-input-container class="md-block" md-no-float flex>
-                        <input name="DateOfBirth" ng-model="form.DateOfBirth" placeholder="Fecha de Nacimiento"
-                               required>
-                        <div ng-messages="registerForm.DateOfBirth.$error" ng-show="registerForm.DateOfBirth.$touched"
+                        <label for="birthdate">Fecha de Nacimiento</label>
+                        <input name="birthdate" ng-model="form.birthdate" placeholder="Fecha de Nacimiento"
+                               type="date" required>
+                        <div ng-messages="registerForm.birthdate.$error" ng-show="registerForm.birthdate.$touched"
                              role="alert">
                             <div ng-message="required">
                                 <span>El campo Fecha de Nacimiento es obligatorio</span>
@@ -102,9 +106,9 @@
 
                 <div layout="row" flex>
                     <md-input-container class="md-block" md-no-float flex>
-                        <input type="UserEmail" name="UserEmail" ng-model="form.UserEmail" placeholder="Email"
+                        <input type="email" name="email" ng-model="form.email" placeholder="Email"
                                ng-pattern="/^.+@.+\..+$/" required>
-                        <div ng-messages="registerForm.UserEmail.$error" ng-show="registerForm.UserEmail.$touched" role="alert"
+                        <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$touched" role="alert"
                              multiple>
                             <div ng-message="required">
                                 <span>Email es requerido</span>
@@ -116,9 +120,9 @@
                     </md-input-container>
 
                     <md-input-container class="md-block" md-no-float flex>
-                        <input type="UserEmail" name="UserEmail" ng-model="form.UserEmail" placeholder="Confirmacion de Email"
+                        <input type="email" name="email" ng-model="form.email" placeholder="Confirmacion de Email"
                                ng-pattern="/^.+@.+\..+$/" required>
-                        <div ng-messages="registerForm.UserEmail.$error" ng-show="registerForm.UserEmail.$touched" role="alert"
+                        <div ng-messages="registerForm.email.$error" ng-show="registerForm.email.$touched" role="alert"
                              multiple>
                             <div ng-message="required">
                                 <span>La confirmacion de email es requerida</span>
@@ -129,9 +133,9 @@
                 </div>
                 <div layout="row" flex>
                     <md-input-container class="md-block" md-no-float flex>
-                        <input type="password" name="password" ng-model="form.Passw" placeholder="Contrase&ntilde;a"
+                        <input type="password" name="password" ng-model="form.password" placeholder="Contrase&ntilde;a"
                                required>
-                        <div ng-messages="registerForm.Passw.$error" ng-show="registerForm.Passw.$touched"
+                        <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched"
                              role="alert">
                             <div ng-message="required">
                                 <span>La contrase&ntilde;a es requerida.</span>
@@ -140,9 +144,9 @@
                     </md-input-container>
 
                     <md-input-container class="md-block" md-no-float flex>
-                        <input type="password" name="passwordConfirmation" ng-model="form.Passw" placeholder="Confirmacion de Contrase&ntilde;a"
+                        <input type="password" name="passwordConfirmation" ng-model="form.password" placeholder="Confirmacion de Contrase&ntilde;a"
                                required>
-                        <div ng-messages="registerForm.Passw.$error" ng-show="registerForm.Passw.$touched"
+                        <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$touched"
                              role="alert">
                             <div ng-message="required">
                                 <span>La confirmaci&oacute;n de la contrase&ntilde;a es requerida.</span>
