@@ -11,8 +11,8 @@
             .constant("server", {
                 "api": "http://localhost/api/",
                 "url": "http://localhost/",
-                "png-icons": "/assets/icons/png/",
-                "images-map": "/assets/images/map/"
+                "pngIcons": "/assets/icons/png/",
+                "imagesMap": "/assets/images/map/"
             });
 })();
 

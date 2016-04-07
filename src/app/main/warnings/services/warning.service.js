@@ -8,7 +8,7 @@
     'use strict';
 
     angular.module('kms.warning')
-            .factory('WarningFactory', ['$http', 'server', 'warningSocket', WarningFactory]);
+            .factory('WarningFactory',  WarningFactory);
 
     function WarningFactory($http, server, warningSocket, notificationFactory) {
         var serv = {
@@ -67,10 +67,10 @@
         }
         
         function notifyNewWarningToBrowser(warning){
-            notification = {};
+            var notification = {};
             notification.title = warning.type.label;
             notification.body = warning.location.neighborhood;
-            notification.icon = server.png-icons+warning.type.name+'.png';
+            notification.icon = server.pngIcons+warning.type.name+'.png';
             notificationFactory.newNotification(notification.title, notification.body, notification.icon);
         }
 
