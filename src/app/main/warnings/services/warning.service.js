@@ -10,7 +10,7 @@
     angular.module('kms.warning')
             .factory('WarningFactory', ['$http', 'server', 'warningSocket', WarningFactory]);
 
-    function WarningFactory($http, server, warningSocket) {
+    function WarningFactory($http, server, warningSocket, notificationFactory) {
         var serv = {
             warnings: [],
             warningsCallBacks: [],
@@ -60,9 +60,18 @@
             warningSocket.on('warning:new', function (data) {
                 console.info('warning:new recieved', data);
                 serv.warnings.push(data);
+                notifyNewWarningToBrowser(data);
                 notifyWaningsChanged();
-                serv.setSelected(data)
+                serv.setSelected(data);
             });
+        }
+        
+        function notifyNewWarningToBrowser(warning){
+            notification = {};
+            notification.title = warning.type.label;
+            notification.body = warning.location.neighborhood;
+            notification.icon = server.png-icons+warning.type.name+'.png';
+            notificationFactory.newNotification(notification.title, notification.body, notification.icon);
         }
 
         function notifySelected(warning) {

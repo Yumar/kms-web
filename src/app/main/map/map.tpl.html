@@ -1,6 +1,6 @@
 <ui-gmap-google-map center="mp.simpleMap.center" zoom="mp.simpleMap.zoom" refresh="true" control="mp.mapControl" flex>
     <ui-gmap-marker ng-repeat="warning in mp.warnings" 
-        idKey='warning._id' options="{icon:'assets/icons/svg/'+warning.type.name+'.svg'}" 
+        idKey='warning._id' options="{icon:'assets/images/map/'+warning.type.name+'.png'}" 
         coords='{latitude : warning.location.latitude, longitude: warning.location.longitude}'
         click="mp.focusWarning(warning)">
     </ui-gmap-marker>

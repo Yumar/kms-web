@@ -1,38 +1,27 @@
 (function () {
     'use strict';
 
-    app.directive('ngMatch', ['$parse', function ($parse) {
+    angular.module('kms')
+            .directive('ngMatch', function () {
+                return {
+                    require: 'ngModel',
+                    link: function (scope, elem, attrs, ngModel) {
+                        ngModel.$parsers.unshift(validate);
 
-            var directive = {
-                link: link,
-                restrict: 'A',
-                require: '?ngModel'
-            };
-            return directive;
+                        // Force-trigger the parsing pipeline.
+                        scope.$watch(attrs.ngModel, function () {
+                            ngModel.$setViewValue(ngModel.$viewValue);
+                        });
 
-            function link(scope, elem, attrs, ctrl) {
-// if ngModel is not defined, we don't need to do anything
-                if (!ctrl)
-                    return;
-                if (!attrs[directiveId])
-                    return;
+                        function validate(value) {
+                            var isValid = scope.$eval(attrs.ngModel) == value;
 
-                var firstPassword = $parse(attrs[directiveId]);
+                            ngModel.$setValidity('match', isValid);
 
-                var validator = function (value) {
-                    var temp = firstPassword(scope),
-                            v = value === temp;
-                    ctrl.$setValidity('match', v);
-                    return value;
-                }
-
-                ctrl.$parsers.unshift(validator);
-                ctrl.$formatters.push(validator);
-                attrs.$observe(directiveId, function () {
-                    validator(ctrl.$viewValue);
-                });
-
-            }
-        }]);
+                            return isValid ? value : undefined;
+                        }
+                    }
+                };
+            });
 })();
 
