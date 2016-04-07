@@ -29,7 +29,7 @@
     'use strict';
 
     angular
-        .module('fuse')
+        .module('kms')
         .run(runBlock);
 
     /** @ngInject */
