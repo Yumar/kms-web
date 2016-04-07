@@ -12,10 +12,26 @@
 
     function register($scope, $rootScope, UserFactory, $mdDialog, locationUtils) {
         var regControl = this;
+        $scope.form = {};
         $scope.gPlace;
         $scope.gPlaceEvents = [];
-        $scope.updateLocation = function (){
-            locationUtils.translateGoogleLocation($scope.form.location, $scope.gPlace.getPlace());
+        $scope.updateLocation = function (placesLocation){
+            if (!$scope.form.location)
+            $scope.form.location = {};
+            
+            locationUtils.translateGoogleLocation($scope.form.location, placesLocation || $scope.gPlace.getPlace());
+        }
+        
+        $scope.useCurrentLocationChanged = function () {
+            if ($scope.useCurrentLocation) {
+                console.info("using current location");
+                locationUtils.getCurrentLocation(useCurrentLocationCallback);
+            }
+        }
+        
+        function useCurrentLocationCallback(result){
+            $scope.updateLocation(result);
+            $scope.$apply();
         }
 
         // Remove the splash screen
@@ -34,6 +50,8 @@
         regControl.validateRegisterFrom = function () {
 
         }
+        
+        
         
         //init
         registerPlacesChangesListener();

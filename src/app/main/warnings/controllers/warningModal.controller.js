@@ -20,16 +20,23 @@
             $mdDialog.hide($scope.warning);
         };
 
-        $scope.updateWarningLocation = function () {
-            locationUtils.translateGoogleLocation($scope.warning.location, $scope.gPlace.getPlace());
+        $scope.updateWarningLocation = function (placesLocation) {
+            if (!$scope.warning.location)
+            $scope.warning.location = {};
+            
+            locationUtils.translateGoogleLocation($scope.warning.location, placesLocation || $scope.gPlace.getPlace());
         }
 
         $scope.useCurrentLocationChanged = function () {
             if ($scope.useCurrentLocation) {
-                console.info("using current location")
-                $scope.gPlace.setBounds(locationUtils.getCurrentLocation());
-                $scope.updateWarningLocation();
+                console.info("using current location");
+                locationUtils.getCurrentLocation(useCurrentLocationCallback);
             }
+        }
+        
+        function useCurrentLocationCallback(result){
+            $scope.updateWarningLocation(result);
+            $scope.$apply();
         }
 
         function registerPlacesChangesListener() {
