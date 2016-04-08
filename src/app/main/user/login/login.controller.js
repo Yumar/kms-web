@@ -7,7 +7,7 @@
             .controller('LoginController', LoginController);
 
     /** @ngInject */
-    function LoginController(UserFactory, $state)
+    function LoginController(UserFactory, $state, WarningFactory)
     {
         var lc = this;
         lc.error;
@@ -19,6 +19,7 @@
                 console.log(lc.error);
             }else{
                 $state.go('kms');
+                WarningFactory.customizeWarningAreas(UserFactory.getCurrentUser().notificationAreas);
             }
         }
 

@@ -17,6 +17,10 @@
             selectedCallBacks: [],
             selected: null
         };
+        
+        serv.customizeWarningAreas = function (areas, callback){
+            warningSocket.emit('warning:customizeAreas', areas, callback);
+        }
 
         serv.registerSelectedCallback = function (callback) {
             serv.selectedCallBacks.push(callback);

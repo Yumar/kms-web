@@ -2,6 +2,10 @@
     height: 100%;
     background-color: #3C4252;
 
+    .md-datepicker-button {
+        width: 36px; 
+    }
+
     #register-form-wrapper {
         flex: 1 0 auto;
         padding: 32px;
@@ -12,7 +16,7 @@
             padding: 20px;
             background: #FFFFFF;
             text-align: center;
-            
+
             #genre-label, #genre-container{
                 margin-top: 0;
             }

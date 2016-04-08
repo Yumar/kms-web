@@ -1,4 +1,4 @@
-<ui-gmap-google-map center="mp.simpleMap.center" zoom="mp.simpleMap.zoom" refresh="true" control="mp.mapControl" flex>
+<ui-gmap-google-map center="mp.simpleMap.center" zoom="mp.simpleMap.zoom" refresh="true" doRebuildAll="true" control="mp.mapControl" flex>
     <ui-gmap-marker ng-repeat="warning in mp.warnings" 
         idKey='warning._id' options="{icon:'assets/images/map/'+warning.type.name+'.png'}" 
         coords='{latitude : warning.location.latitude, longitude: warning.location.longitude}'
