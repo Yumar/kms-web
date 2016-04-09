@@ -4,8 +4,9 @@
     angular.module('kms.map')
             .controller('MapController', MapController);
 
-    function MapController(NgMap, WarningFactory, $scope) {
+    function MapController(NgMap, WarningFactory, $timeout) {
         var mp = this;
+        mp.map;
 
         mp.center = {
             latitude: 18.494907,
@@ -15,9 +16,7 @@
         mp.warnings = [];
 
         NgMap.getMap().then(function (map) {
-            console.log(map.getCenter());
-            console.log('markers', map.markers);
-            console.log('shapes', map.shapes);
+            mp.map = map;
         });
 
         mp.focusWarning = function (warning) { //set warning as selected in the service an then focus
@@ -38,6 +37,18 @@
             mp.warnings = WarningFactory.warnings;
             console.info("warnings in map", mp.warnings);
         }
+
+        //reload map
+//        $scope.$on('$routeChangeSuccess', function () {
+//            console.log("resizing map", mp.map);
+//            google.maps.event.trigger(mp.map, 'resize');
+//        });
+
+//      map rerender fix 
+        mp.renderMap = false;
+        $timeout(function () {
+            mp.renderMap = true;
+        }, 1000);
 
         WarningFactory.registerSelectedCallback(selectedFocusCallback);
         WarningFactory.registerWarningsCallBacks(warningsCallback);
