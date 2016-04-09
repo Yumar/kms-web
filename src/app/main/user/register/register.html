@@ -47,19 +47,14 @@
                         </div>
                     </md-input-container>
 
-
-                    <md-datepicker name="birthdate" ng-model="form.birthdate" placeholder="Fecha de Nacimiento" required>                        
-                    </md-datepicker>
+                    <md-datepicker flex name="birthdate" ng-model="form.birthdate" md-placeholder="Fecha de Nacimiento" required></md-datepicker>
                     <div ng-messages="registerForm.birthdate.$error" ng-show="registerForm.birthdate.$touched"
                          role="alert">
                         <div ng-message="required">
                             <span>El campo Fecha de Nacimiento es obligatorio</span>
                         </div>
-                    </div>                  
-                </div>
-
-                <!--
-                <md-input-container class="md-block" md-no-float flex>
+                    </div> 
+                    <md-input-container class="md-block" md-no-float flex>
                         <input name="phone" ng-model="form.phone" placeholder="Tel&eacute;fono"                           
                                type="tel" required>
                         <div ng-messages="registerForm.phone.$error" ng-show="registerForm.phone.$touched"
@@ -72,7 +67,7 @@
                             </div>
                         </div>
                     </md-input-container>
-                -->
+                </div>
 
                 <div layout-gt-xs="row">
                     <md-input-container class="md-block" flex>
@@ -169,7 +164,7 @@
                         </div>
                     </div>
 
-                    <md-button type="submit" class="md-raised md-accent" aria-label="Crear Cuenta"
+                    <md-button id="submit-btn" type="submit" class="md-raised md-accent" aria-label="Crear Cuenta"
                                ng-disabled="registerForm.$invalid || registerForm.$pristine">
                         Crear Cuenta
                     </md-button>

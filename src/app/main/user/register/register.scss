@@ -5,6 +5,13 @@
     .md-datepicker-button {
         width: 36px; 
     }
+    .md-datepicker-input{
+        width: 150px;
+    }
+    
+    .md-datepicker-input-container{
+        padding-top: 30px;
+    }
 
     #register-form-wrapper {
         flex: 1 0 auto;
@@ -50,7 +57,7 @@
                     }
                 }
 
-                .md-button {
+                #submit-btn {
                     width: 220px;
                     margin: 16px auto;
                     display: block;
