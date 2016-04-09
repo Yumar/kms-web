@@ -12,16 +12,16 @@ angular.module('kms.auth.profile', [])
                             templateUrl: 'app/main/user/profile/templates/profile.html',
                             controller: 'MainController as mc'
                         },
-                        'warning-area-list@profile': {
+                        'warning-area-list@kms.profile': {
                             templateUrl: 'app/main/user/profile/templates/warning-area-list.html'
                         },
-                        'user-info@profile': {
+                        'user-info@kms.profile': {
                             templateUrl: 'app/main/user/profile/templates/user-info.html'
                         },
-                        'user-contacts@profile': {
+                        'user-contacts@kms.profile': {
                             templateUrl: 'app/main/user/profile/templates/user-contact.html'
                         },
-                        'toolbar@profile': {
+                        'toolbar@kms.profile': {
                             templateUrl: 'app/main/user/toolbar/toolbar.html',
                             controller: 'ToolbarController as vm'
                         }
