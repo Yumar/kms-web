@@ -4,22 +4,20 @@
     angular.module('kms.map')
             .controller('MapController', MapController);
 
-    function MapController(uiGmapGoogleMapApi, WarningFactory, $scope) {
-        var mp = this,
-                center = {
-                    latitude: 18.494907,
-                    longitude: -69.834096
-                };
+    function MapController(NgMap, WarningFactory, $scope) {
+        var mp = this;
+
+        mp.center = {
+            latitude: 18.494907,
+            longitude: -69.834096
+        };
+
         mp.warnings = [];
-        mp.mapControl = {};
 
-        uiGmapGoogleMapApi.then(function (maps)
-        {
-            mp.simpleMap = {
-                center: center,
-                zoom: 15
-            };
-
+        NgMap.getMap().then(function (map) {
+            console.log(map.getCenter());
+            console.log('markers', map.markers);
+            console.log('shapes', map.shapes);
         });
 
         mp.focusWarning = function (warning) { //set warning as selected in the service an then focus
@@ -29,7 +27,7 @@
 
         function focusWarning(location) {
             var newCenter = {latitude: location.latitude, longitude: location.longitude};
-            mp.mapControl.refresh(newCenter);
+            mp.center = newCenter;
         }
 
         function selectedFocusCallback(warning) {
