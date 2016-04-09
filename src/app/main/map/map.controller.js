@@ -19,9 +19,9 @@
             mp.map = map;
         });
 
-        mp.focusWarning = function (warning) { //set warning as selected in the service an then focus
+        mp.focusWarning = function (marker, warning) { //set warning as selected in the service an then focus
             WarningFactory.setSelected(warning);
-            focusWarning(warning.Localitys);
+            focusWarning(warning.location);
         };
 
         function focusWarning(location) {

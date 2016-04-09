@@ -1,6 +1,6 @@
 <ng-map class="warnings-map" center="[{{mp.center.latitude}}, {{mp.center.longitude}}]" 
         zoom="8" default-style="false" ng-if="mp.renderMap">
-    <marker ng-repeat="warning in mp.warnings" 
+    <marker ng-repeat="warning in mp.warnings" on-click="mp.focusWarning(warning)"
             position="{{[warning.location.latitude, warning.location.longitude]}}"
             icon="assets/images/map/{{warning.type.name}}.png"></marker>
 </ng-map>
