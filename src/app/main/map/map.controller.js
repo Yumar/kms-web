@@ -9,8 +9,8 @@
         mp.map;
 
         mp.center = {
-            latitude: 18.494907,
-            longitude: -69.834096
+            latitude: 18.470908750000003,
+            longitude: -69.924419
         };
 
         mp.warnings = [];
