@@ -10,20 +10,14 @@ angular.module('kms.auth.profile', [])
                     views: {
                         'main@': {
                             templateUrl: 'app/main/user/profile/templates/profile.html',
-                            controller: 'MainController as mc'
+                            controller: 'ProfileController as pc'
                         },
                         'warning-area-list@kms.profile': {
-                            templateUrl: 'app/main/user/profile/templates/warning-area-list.html'
-                        },
-                        'user-info@kms.profile': {
-                            templateUrl: 'app/main/user/profile/templates/user-info.html'
+                            templateUrl: 'app/main/user/profile/templates/warning-area-list.html',
+                            
                         },
                         'user-contacts@kms.profile': {
                             templateUrl: 'app/main/user/profile/templates/user-contact.html'
-                        },
-                        'toolbar@kms.profile': {
-                            templateUrl: 'app/main/user/toolbar/toolbar.html',
-                            controller: 'ToolbarController as vm'
                         }
                     }
                 });

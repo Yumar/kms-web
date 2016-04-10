@@ -1,105 +1,127 @@
 <div id="profile" class="page-layout simple tabbed">
-
     <!-- HEADER -->
     <div class="header md-accent-bg" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="space-between end">
         <div class="user-info" layout="column" layout-align="center center" layout-gt-sm="row" layout-align-gt-sm="start center">
-            <img class="profile-image avatar huge" src="assets/images/avatars/katherine.jpg">
+            <img class="profile-image avatar huge" ng-src="assets/images/avatars/{{pc.user.profilePictureUrl}}.jpg">
 
-            <div class="name">Katherine Wilson</div>
+            <div class="name">{{pc.user.firstname}} {{pc.user.lastname|| ''}}</div>
         </div>
 
         <div class="actions" layout="row" layout-align="end center">
             <md-button class="md-raised md-accent" aria-label="Follow" translate="PROFILE.FOLLOW"
-            translate-attr-aria-label="PROFILE.FOLLOW">Follow
-        </md-button>
-        <md-button class="md-raised md-primary" translate="PROFILE.SEND_MESSAGE"
-        translate-attr-aria-label="PROFILE.SEND_MESSAGE">Send Message
-    </md-button>
-</div>
-</div>
-<!-- / HEADER -->
-
-<!-- CONTENT -->
-<div class="content" flex>
-
-    <div layout="row" layout-wrap>
-
-        <div class="about" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="65">
-            <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
-                <header class="md-accent-bg">
-                    <div class="title">Informaci&oacute;n Personal</div>
-                </header>
-
-                <div ui-view="user-info"></div>
-            </div>
-
-            <div class="profile-box info-box work md-whiteframe-1dp" layout="column">
-                <header class="md-accent-bg">
-                    <div class="title">&Aacute;reas de Notificaci&oacute;n</div>
-                </header>
-
-                <div ui-view="notification-area-list"></div>
-            </div>
-
-            <div class="profile-box info-box contact md-whiteframe-1dp" layout="column">
-                <header class="md-accent-bg">
-                    <div class="title" translate="PROFILE.CONTACT">Contact</div>
-                </header>
-                <div ui-view="user-contact"></div>
-            </div>
+                       translate-attr-aria-label="PROFILE.FOLLOW">Follow
+            </md-button>
+            <md-button class="md-raised md-primary" translate="PROFILE.SEND_MESSAGE"
+                       translate-attr-aria-label="PROFILE.SEND_MESSAGE">Send Message
+            </md-button>
         </div>
+    </div>
+    <!-- / HEADER -->
 
-        <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="35">
-            <div class="profile-box friends md-whiteframe-1dp" layout="column">
-                <header class="md-accent-bg" layout="row" layout-align="space-between center">
-                    <div class="title" translate="PROFILE.FRIENDS">Friends</div>
-                    <div class="more secondary-text">
-                        <span translate="PROFILE.SEE">See</span>
-                        <span>454</span>
-                        <span translate="PROFILE.MORE">More</span>
+    <!-- CONTENT -->
+    <div class="content" flex>
+
+        <div layout="row" layout-wrap>
+
+            <div class="about" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="65">
+                <div class="profile-box info-box general md-whiteframe-1dp" layout="column">
+                    <header class="md-accent-bg">
+                        <div class="title">Informaci&oacute;n Personal</div>
+                    </header>
+
+                    <div class="content">
+                        <div class="info-line">
+                            <div class="title" translate="PROFILE.GENDER">Gender</div>
+                            <div class="info">{{vm.about.general.gender}}</div>
+                        </div>
+
+                        <div class="info-line">
+                            <div class="title" translate="PROFILE.BIRTHDAY">Birthday</div>
+                            <div class="info">{{vm.about.general.birthday}}</div>
+                        </div>
+
+                        <div class="info-line">
+                            <div class="title" translate="PROFILE.LOCATIONS">Locations</div>
+                            <div class="info location" ng-repeat="location in vm.about.general.locations">
+                                <span>{{location}}</span>
+                                <md-icon md-font-icon="icon-map-marker" class="s16"></md-icon>
+                            </div>
+                        </div>
+
+                        <div class="info-line">
+                            <div class="title" translate="PROFILE.ABOUT_ME">About Me</div>
+                            <div class="info">{{vm.about.general.about}}</div>
+                        </div>
                     </div>
-                </header>
-                <div class="content" layout="row" layout-wrap>
-                    <div class="friend" flex="20" ng-repeat="friend in vm.about.friends">
-                        <img ng-src="{{friend.avatar}}">
+                </div>
+
+                <div class="profile-box info-box work md-whiteframe-1dp" layout="column">
+                    <header class="md-accent-bg">
+                        <div class="title">&Aacute;reas de Notificaci&oacute;n</div>
+                    </header>
+
+                    <div ui-view="notification-area-list"></div>
+                </div>
+
+                <div class="profile-box info-box contact md-whiteframe-1dp" layout="column">
+                    <header class="md-accent-bg">
+                        <div class="title" translate="PROFILE.CONTACT">Contact</div>
+                    </header>
+                    <div ui-view="user-contact"></div>
+                </div>
+            </div>
+
+            <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="35">
+                <div class="profile-box friends md-whiteframe-1dp" layout="column">
+                    <header class="md-accent-bg" layout="row" layout-align="space-between center">
+                        <div class="title" translate="PROFILE.FRIENDS">Friends</div>
+                        <div class="more secondary-text">
+                            <span translate="PROFILE.SEE">See</span>
+                            <span>454</span>
+                            <span translate="PROFILE.MORE">More</span>
+                        </div>
+                    </header>
+                    <div class="content" layout="row" layout-wrap>
+                        <div class="friend" flex="20" ng-repeat="friend in vm.about.friends">
+                            <img ng-src="{{friend.avatar}}">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-box groups md-whiteframe-1dp" layout="column">
+                    <header class="md-accent-bg" layout="row" layout-align="space-between center">
+                        <div class="title" translate="PROFILE.JOINED_GROUPS">Joined Groups</div>
+                        <div class="more secondary-text">
+                            <span translate="PROFILE.SEE">See</span>
+                            <span>6</span>
+                            <span translate="PROFILE.MORE">More</span>
+                        </div>
+                    </header>
+
+                    <div class="content">
+                        <div class="group" ng-repeat="group in vm.about.groups" layout="row"
+                             layout-align="space-between center">
+                            <div layout="row" layout-align="start center">
+                                <img ng-src="{{group.logo}}" class="logo" alt="{{group.name}}"/>
+
+                                <div>
+                                    <div class="name">{{group.name}}</div>
+                                    <div class="category">{{group.category}}</div>
+                                    <div class="members">{{group.members}} people</div>
+                                </div>
+                            </div>
+                            <md-button class="md-icon-button" aria-label="more" translate
+                                       translate-attr-aria-label="PROFILE.MORE">
+                                <md-icon md-font-icon="icon-dots-vertical"></md-icon>
+                            </md-button>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <div class="profile-box groups md-whiteframe-1dp" layout="column">
-                <header class="md-accent-bg" layout="row" layout-align="space-between center">
-                    <div class="title" translate="PROFILE.JOINED_GROUPS">Joined Groups</div>
-                    <div class="more secondary-text">
-                        <span translate="PROFILE.SEE">See</span>
-                        <span>6</span>
-                        <span translate="PROFILE.MORE">More</span>
-                    </div>
-                </header>
-
-                <div class="content">
-                    <div class="group" ng-repeat="group in vm.about.groups" layout="row"
-                    layout-align="space-between center">
-                    <div layout="row" layout-align="start center">
-                        <img ng-src="{{group.logo}}" class="logo" alt="{{group.name}}"/>
-
-                        <div>
-                            <div class="name">{{group.name}}</div>
-                            <div class="category">{{group.category}}</div>
-                            <div class="members">{{group.members}} people</div>
-                        </div>
-                    </div>
-                    <md-button class="md-icon-button" aria-label="more" translate
-                    translate-attr-aria-label="PROFILE.MORE">
-                    <md-icon md-font-icon="icon-dots-vertical"></md-icon>
-                </md-button>
-            </div>
         </div>
+
     </div>
-</div>
-
-</div>
-
-</div>
-<!-- / CONTENT -->
+    <!-- / CONTENT -->
 
 </div>
