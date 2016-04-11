@@ -48,10 +48,6 @@
                             templateUrl: 'app/main/map/map.tpl.html',
                             controller: 'MapController as mp'
                         },
-                        'sidebar@kms': {
-                            templateUrl: 'app/main/settings/settings.list.html',
-                            controller: 'SettingsController as sc'
-                        },
                         'toolbar@kms': {
                             templateUrl: 'app/main/user/toolbar/toolbar.html',
                             controller: 'ToolbarController as vm'

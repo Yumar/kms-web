@@ -3,7 +3,6 @@
     angular.module('kms', [
         'kms.map',
         'kms.warning',
-        'kms.settings',
         'kms.auth',
         'app.core',
         'ui.router'
