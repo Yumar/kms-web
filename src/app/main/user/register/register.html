@@ -115,8 +115,8 @@
                     </md-input-container>
 
                     <md-input-container class="md-block" md-no-float flex>
-                        <input type="email" name="email" ng-model="form.emailConfirm" placeholder="Confirmaci&oacute;n de Email"  
-                               ng-match="form.email" required>
+                        <input type="email" name="emailConfirmation" ng-model="form.emailConfirm" 
+                               placeholder="Confirmaci&oacute;n de Email" ng-match="form.email" required>
                         <div ng-messages="registerForm.emailConfirmation.$error" ng-show="registerForm.emailConfirmation.$touched" role="alert" multiple>
                             <div ng-message="required">
                                 <span>La confirmaci&oacute;n de email es requerida</span>

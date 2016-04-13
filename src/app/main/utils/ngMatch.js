@@ -9,12 +9,15 @@
                         ngModel.$parsers.unshift(validate);
 
                         // Force-trigger the parsing pipeline.
-                        scope.$watch(attrs.ngModel, function () {
+                        scope.$watch(attrs.ngMatch, function () {
                             ngModel.$setViewValue(ngModel.$viewValue);
                         });
 
                         function validate(value) {
-                            var isValid = scope.$eval(attrs.ngModel) == value;
+                            console.log("validate value:",value);
+                            console.log("match model:", scope.$eval(attrs.ngMatch));
+                            
+                            var isValid = scope.$eval(attrs.ngMatch) == value;
 
                             ngModel.$setValidity('match', isValid);
 
