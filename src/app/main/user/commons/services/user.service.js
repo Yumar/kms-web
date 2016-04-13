@@ -10,7 +10,11 @@
             currentUserCallbacks: []
         };
 
-        serv.getCurrentUser = function () {
+        serv.getCurrentUser = function (refresh) {
+            if(refresh){
+                refreshCurrentUser();
+            }
+            
             return this.currentUser;
         }
 
@@ -45,6 +49,8 @@
                         serv.setCurrentUser(null);
 //                    });
         };
+        
+        serv.refreshCurrentUser = refreshCurrentUser;
 
         serv.register = function (user) {
             return $http.post(server.api + 'user', {"form": user});
@@ -67,6 +73,18 @@
             angular.forEach(serv.currentUserCallbacks, function (callback) {
                 callback(serv.getCurrentUser());
             })
+        }
+        
+        function refreshCurrentUser(){
+            var id = serv.currentUser._id;
+            findUser(id).then(function (result){
+                console.log('find current user result:',result);
+                serv.setCurrentUser(result.data);
+            });
+        }
+        
+        function findUser(id){
+            return $http.get(server.api+'user/'+id);
         }
 
         return serv;

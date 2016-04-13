@@ -54,7 +54,7 @@
 
             <div class="about-sidebar" layout="column" flex="100" flex-gt-sm="50" flex-gt-md="35">
                 <div class="profile-box info-box work md-whiteframe-1dp" layout="column">
-                    <header class="md-accent-bg">
+                    <header class="md-accent-bg" layout="column">
                         <div class="title">&Aacute;reas de Notificaci&oacute;n</div>
                         <div class="more secondary-text" ng-if="pc.user.notificationAreas">
                             <span>{{pc.user.notificationAreas.length}}</span>
@@ -65,14 +65,15 @@
 
                     <div class="content">
                         <div ng-if="pc.user.notificationAreas" class="info-line" ng-repeat="area in pc.user.notificationAreas">
-                            <a ng-click="pc.openEditAreaModal(area)">
-                                <div class="title"><md-icon md-font-icon="icon-map-marker" class="s16"></md-icon> {{area.title}}</div>
-                                <div class="info">{{area.location.state}}, {{area.location.country}}</div>
-                                <div class="info">{{area.location.city}}</div>
-                                <div class="info">{{area.location.neighborhood}}</div>
-                            </a>
+                            <div ng-click="pc.openAreaModal(area)" class="title"></md-icon>{{area.title}}</div>  
+                            <div class="info">{{area.location.city}}, {{area.location.neighborhood}} <md-icon md-font-icon="icon-map-marker" class="s16"></div>
                         </div>
-                        <md-button class="md-accent" ng-click="pc.openEditAreaModal()">Añadir</md-button>
+                        <div ng-if="!pc.user.notificationAreas">
+                            <p>No hay &aacute;reas configuradas para mostrar</p>
+                        </div>
+                        <md-button ng-click="pc.openAreaModal()" class="md-fab md-accent" aria-label="nueva area">
+                            <md-icon md-font-icon="icon-plus"></md-icon>
+                        </md-button>
                     </div>
                 </div>
 

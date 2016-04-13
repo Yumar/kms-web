@@ -4,13 +4,12 @@
     angular.module('kms')
             .factory('NotificarionAreaFactory', notificarionArea);
 
-    function notificarionArea($http, UserFactory) {
+    function notificarionArea($http, server) {
         var serv = {
-            user: UserFactory.getCurrentUser()
         };
 
-        serv.add = function (notificarionArea) {
-            
+        serv.add = function (userid, notificarionArea) {
+            return $http.post(server.api+'notificationarea/'+userid, notificarionArea);
         };
         
         serv.remove = function(id){

@@ -5,7 +5,7 @@
             .controller('ProfileController', function (UserFactory, $state, $scope, $rootScope, $mdDialog) {
                 var pc = this;
                 pc.user;
-                pc.openAreaModal = openAreaModal; 
+                pc.openAreaModal = openAreaModal;
 
                 function init() {
                     pc.user = UserFactory.getCurrentUser();
@@ -16,10 +16,13 @@
                         controller: 'NotificationAreaController',
                         templateUrl: 'app/main/user/profile/templates/warning-area-modal.html',
                         parent: angular.element(document.body),
-                        locals: {notificationArea: area}, 
+                        locals: {
+                            notificationArea: area || {},
+                            userId: pc.user._id
+                        },
                         clickOutsideToClose: true
                     }).then(function () {
-                        init();
+                        UserFactory.refreshCurrentUser();
                     });
                 }
 
@@ -35,6 +38,12 @@
 
                 //init
                 init();
+
+                //watch for current user changes from factory
+                UserFactory.registerCurrentUserCallback(userChangedCallback);
+                function userChangedCallback() {
+                    pc.user = UserFactory.getCurrentUser();
+                }
             });
 })();
 
