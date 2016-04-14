@@ -1,7 +1,7 @@
 (function () {
     'use strict';
     angular.module('kms', [
-        'kms.map',
+       // 'kms.map',
         'kms.warning',
         'kms.auth',
         'app.core',

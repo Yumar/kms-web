@@ -36,7 +36,7 @@
     "angular-moment-picker": "moment-picker#5e5b007",
     "angular-simple-logger": ">=0.0.1",
     "lodash": "3.X - 4.X",
-    "ngmap": "1.17.3"
+    "ngmap": "^1.17.3"
   },
   "devDependencies": {
     "angular-mocks": "1.4.8"
