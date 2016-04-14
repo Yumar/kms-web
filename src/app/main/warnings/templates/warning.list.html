@@ -2,7 +2,7 @@
     <p>Alertas y Denuncias</p>
 </md-toolbar>
 <md-list>
-    <md-list-item class="md-3-line warning" ng-repeat-start="warning in wc.list" 
+    <md-list-item class="md-3-line warning" ng-repeat-start="warning in wc.list | orderBy : '-reportDate'" 
                   ng-click="wc.selectWarning(warning)" ng-class="{'grey-bg md-hue-3-bg': wc.isSelected(warning._id)}">
         <img class="warning-png-icon" ng-src="assets/icons/png/{{warning.type.name}}.png" />
         <!-- TODO: Replace png with svg <md-icon class="warning-icon" md-svg-src="assets/icons/png/{{warning.type.name}}.png"></md-icon> -->

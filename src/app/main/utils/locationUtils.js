@@ -13,18 +13,41 @@
         function translateGoogleLocation(location, googlePlace) {
             var googleLocation = googlePlace.address_components,
                     geometry = googlePlace.geometry;
-            
-            if(!location.address){
+
+            console.log("google Location", googleLocation);
+            if (!location.address) {
                 location.address = googlePlace.formatted_address;
             }
-            
-            location.street = googleLocation[0] ? angular.copy(googleLocation[0].long_name) : '';
-            location.neighborhood = googleLocation[1] ? angular.copy(googleLocation[1].long_name) : '';
-            location.city = googleLocation[2] ? angular.copy(googleLocation[2].long_name) : '';
-            location.state = googleLocation[3] ? angular.copy(googleLocation[3].long_name) : '';
-            location.country = googleLocation[4] ? angular.copy(googleLocation[4].long_name) : '';
-            location.latitude = geometry.location.lat();
-            location.longitude = geometry.location.lng();
+
+            for (var i = 0; i < googleLocation.length; i++) {
+                var value = googleLocation[i];
+
+                if (value.types[0] == 'route') {
+                    location.street = value.long_name;
+                    continue;
+                }
+                
+                if (value.types[0] == 'neighborhood') {
+                    location.neighborhood = value.long_name;
+                    continue;
+                }
+                
+                if (value.types[0] == 'locality') {
+                    location.city = value.long_name;
+                    continue;
+                }
+                
+                if (value.types[0] == 'administrative_area_level_1') {
+                    location.state = value.long_name;
+                    continue;
+                }
+                
+                if (value.types[0] == 'country') {
+                    location.street = value.long_name;
+                    continue;
+                }
+
+            }
         }
 
         function getCurrentLocation(callback) {

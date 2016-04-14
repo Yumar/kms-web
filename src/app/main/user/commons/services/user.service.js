@@ -4,7 +4,7 @@
     angular.module('kms.auth')
             .factory('UserFactory', userFact);
 
-    function userFact(server, $http) {
+    function userFact(server, $http, WarningFactory) {
         var serv = {
             currentUser: null,
             currentUserCallbacks: []
@@ -44,6 +44,8 @@
         };
 
         serv.logout = function () {
+            //erase warning socket customization
+            WarningFactory.customizeWarningAreas([]);
 //            $http.delete(server.api + 'login')
 //                    .then(function () {
                         serv.setCurrentUser(null);
