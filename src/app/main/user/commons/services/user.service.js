@@ -16,12 +16,12 @@
             }
             
             return this.currentUser;
-        }
+        };
 
         serv.setCurrentUser = function (user) {
             this.currentUser = user;
             currentUserChanged();
-        }
+        };
 
         serv.login = function (user, pass, callback) {
             /*
@@ -40,7 +40,7 @@
             }, function (event) {
                 serv.setCurrentUser(null);
                 callback(event);
-            })
+            });
         };
 
         serv.logout = function () {
@@ -56,7 +56,7 @@
 
         serv.register = function (user) {
             return $http.post(server.api + 'user', {"form": user});
-        }
+        };
 
         serv.changeStatus = function (userid, active) {
             /*
@@ -65,16 +65,18 @@
             return $http.patch(server.api + 'user/' + userid, {
                 active: active
             });
-        }
+        };
+        
+        serv.get = findUser;
 
         serv.registerCurrentUserCallback = function (callback) {
-            serv.currentUserCallbacks.push(callback)
-        }
+            serv.currentUserCallbacks.push(callback);
+        };
 
         function currentUserChanged() {
             angular.forEach(serv.currentUserCallbacks, function (callback) {
                 callback(serv.getCurrentUser());
-            })
+            });
         }
         
         function refreshCurrentUser(){

@@ -15,7 +15,7 @@
     </div>
 
     <div layout="row" layout-align="start center">
-        
+
         <md-menu-bar id="user-menu">
             <md-button ng-if="!user" ui-sref="kms.login">
                 Iniciar Sesi&oacute;n
@@ -38,10 +38,10 @@
                         <md-icon md-font-icon="icon-email" class="icon"></md-icon>
                         <md-button>Notificaciones</md-button>
                     </md-menu-item>
-                    
-                    <md-menu-item class="md-indent" ui-sref="kms.profile">
+
+                    <md-menu-item class="md-indent" ui-sref="kms.profile({id:user._id})">
                         <md-icon md-font-icon="icon-account" class="icon"></md-icon>
-                        <md-button ui-sref='kms.profile'>Perfil</md-button>
+                        <md-button>Perfil</md-button>
                     </md-menu-item>                    
 
                     <md-menu-divider></md-menu-divider>

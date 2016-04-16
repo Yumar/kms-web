@@ -4,7 +4,7 @@
   angular.module('kms.auth.profile')
     .controller('ProfileController', function(UserFactory, $state, $scope, $rootScope, $mdDialog, user) {
       var pc = this;
-      pc.user = user.data;
+      pc.user = user;
       pc.openAreaModal = openAreaModal;
 
       function openAreaModal(area) {
