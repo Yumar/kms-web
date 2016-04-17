@@ -19,7 +19,6 @@
                 console.log(lc.error);
             }else{
                 $state.go('kms');
-                WarningFactory.customizeWarningAreas(UserFactory.getCurrentUser().notificationAreas);
             }
         }
 

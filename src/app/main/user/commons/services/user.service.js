@@ -44,8 +44,6 @@
         };
 
         serv.logout = function () {
-            //erase warning socket customization
-            WarningFactory.customizeWarningAreas([]);
 //            $http.delete(server.api + 'login')
 //                    .then(function () {
                         serv.setCurrentUser(null);

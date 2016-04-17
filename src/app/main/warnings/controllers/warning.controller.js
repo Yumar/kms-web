@@ -16,14 +16,6 @@
         wc.selectedId = null;
         wc.warningTypes = [];
 
-        function selectedCallback(warning) {
-            wc.selectedId = warning._id;
-        }
-        
-        function warningsCallback(){
-            wc.list = WarningFactory.warnings;
-        }
-
         function saveWarning(w) {
             w.user = UserFactory.getCurrentUser();
             console.info("a warning created  ", w);
@@ -59,10 +51,32 @@
             }, function () {
 
             });
+        }        
+        
+        // callbacks
+        function selectedCallback(warning) {
+            wc.selectedId = warning._id;
         }
         
+        function warningsCallback(){
+            wc.list = WarningFactory.warnings;
+        }
+        
+        function userChangedCallback (){
+            //customize user specific areas
+            console.log('userChangedCallback called');
+            var user = UserFactory.getCurrentUser(),
+            notificationAreas = user? user.notificationAreas : [];
+            WarningFactory.customizeWarningAreas(notificationAreas);
+        }
+        
+        //init
+        userChangedCallback();
         warningsCallback();
         getWarningTypes();
+        
+        //watch for current user changes from factory
+        UserFactory.registerCurrentUserCallback(userChangedCallback);
         WarningFactory.registerSelectedCallback(selectedCallback);
         WarningFactory.registerWarningsCallBacks(warningsCallback);
     }
