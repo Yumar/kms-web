@@ -27,12 +27,12 @@
                     continue;
                 }
                 
-                if (value.types[0] == 'neighborhood') {
+                if (value.types[0] == 'neighborhood' || value.types[1] == 'sublocality_level_1') {
                     location.neighborhood = value.long_name;
                     continue;
                 }
                 
-                if (value.types[0] == 'locality') {
+                if (value.types[0] == 'locality' || value.types[0] == 'administrative_area_level_2') {
                     location.city = value.long_name;
                     continue;
                 }
@@ -43,7 +43,7 @@
                 }
                 
                 if (value.types[0] == 'country') {
-                    location.street = value.long_name;
+                    location.country = value.long_name;
                     continue;
                 }
 
