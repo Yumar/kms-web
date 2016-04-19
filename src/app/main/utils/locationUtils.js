@@ -18,6 +18,10 @@
             if (!location.address) {
                 location.address = googlePlace.formatted_address;
             }
+            
+            //location for map
+            location.latitude = geometry.location.lat();
+            location.longitude = geometry.location.lng();
 
             for (var i = 0; i < googleLocation.length; i++) {
                 var value = googleLocation[i];
