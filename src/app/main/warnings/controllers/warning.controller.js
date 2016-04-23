@@ -65,8 +65,10 @@
         function userChangedCallback (){
             //customize user specific areas
             console.log('userChangedCallback called');
-            var user = UserFactory.getCurrentUser(),
-            notificationAreas = user? user.notificationAreas : [];
+            
+            wc.user = UserFactory.getCurrentUser();
+            
+            var notificationAreas = wc.user? wc.user.notificationAreas : [];
             WarningFactory.customizeWarningAreas(notificationAreas);
         }
         
