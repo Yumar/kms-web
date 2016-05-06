@@ -47,13 +47,15 @@
                         </div>
                     </md-input-container>
 
-                    <md-datepicker flex name="birthdate" ng-model="form.birthdate" md-placeholder="Fecha de Nacimiento" required></md-datepicker>
-                    <div ng-messages="registerForm.birthdate.$error" ng-show="registerForm.birthdate.$touched"
-                         role="alert">
-                        <div ng-message="required">
-                            <span>El campo Fecha de Nacimiento es obligatorio</span>
-                        </div>
-                    </div> 
+                    <div flex layout="row">
+                        <mdp-date-picker flex name="birthdate" mdp-placeholder="Fecha de Nacimiento" ng-model="form.birthdate" required></mdp-date-picker>
+                        <div class="validation-messages" ng-messages="registerForm.birthdate.$error" ng-show="registerForm.birthdate.$touched"
+                             role="alert">
+                            <div ng-message="required">
+                                <span>El campo Fecha de Nacimiento es obligatorio</span>
+                            </div>
+                        </div> 
+                    </div>
                     <md-input-container class="md-block" md-no-float flex>
                         <input name="phone" ng-model="form.phone" placeholder="Tel&eacute;fono"                           
                                type="tel" required>

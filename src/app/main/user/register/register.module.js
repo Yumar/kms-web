@@ -7,7 +7,7 @@
 (function () {
     'use strict';
 
-    angular.module('kms.auth.register', ['ui.router'])
+    angular.module('kms.auth.register', [])
             .config(config);
 
     function config($stateProvider) {        

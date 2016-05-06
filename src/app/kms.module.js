@@ -1,11 +1,13 @@
 (function () {
     'use strict';
     angular.module('kms', [
+        'ui.router',
+        'mdPickers',
+        
         'kms.map',
         'kms.warning',
         'kms.auth',
-        'app.core',
-        'ui.router'
+        'app.core'        
     ])
             .constant("server", {
                 "api": "http://localhost/api/",

@@ -2,13 +2,20 @@
     height: 100%;
     background-color: #3C4252;
 
+    .validation-messages {
+        font-size: 11px;
+        color: darkred;
+        margin-top: 60px;
+        margin-right: 20px;
+    }
+    
     .md-datepicker-button {
         width: 36px; 
     }
     .md-datepicker-input{
         width: 150px;
     }
-    
+
     .md-datepicker-input-container{
         padding-top: 30px;
     }
