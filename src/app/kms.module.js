@@ -13,7 +13,11 @@
                 "api": "http://localhost/api/",
                 "url": "http://localhost/",
                 "pngIcons": "/assets/icons/png/",
-                "imagesMap": "/assets/images/map/"
+                "imagesMap": "/assets/images/map/",
+                "DotNet":{
+                    "api":"http://servicekms.azurewebsites.net/api/",
+                    "url":"http://servicekms.azurewebsites.net/"
+                }
             });
 })();
 
