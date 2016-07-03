@@ -10,7 +10,7 @@
     angular.module('kms.warning')
             .controller('WarningController', WarningController);
 
-    function WarningController(WarningFactory, WarningDotNetFactory, UserFactory, $mdDialog) {
+    function WarningController(WarningFactory, UserFactory, $mdDialog) {
         var wc = this;
         wc.list = [];
         wc.selectedId = null;

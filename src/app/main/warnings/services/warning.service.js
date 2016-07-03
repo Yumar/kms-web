@@ -8,37 +8,37 @@
     'use strict';
 
     angular.module('kms.warning')
-            .factory('WarningFactory',  WarningFactory);
+            .factory('WarningFactory', WarningFactory);
 
-    function WarningFactory($http, server, notificationFactory) {
+    function WarningFactory($http, server, notificationFactory, EntitiesConverterFactory, SignalR) {
         var serv = {
             warnings: [],
             warningsCallBacks: [],
             selectedCallBacks: [],
             selected: null
         };
-        
+
 //        serv.customizeWarningAreas = function (areas, callback){
 //            warningSocket.emit('warning:customizeAreas', areas, callback);
 //        }        
 
         serv.registerSelectedCallback = function (callback) {
             serv.selectedCallBacks.push(callback);
-        }
+        };
 
         serv.setSelected = function (warning) {
             serv.selected = warning;
             notifySelected(warning);
-        }
+        };
 
 //        serv.createWarning = function (warning, callback) {
 //            warning.type = JSON.parse(warning.type);
 //            warningSocket.emit('warning:create', warning, callback);
 //        }    
-        
+
         serv.registerWarningsCallBacks = function (callback) {
             serv.warningsCallBacks.push(callback);
-        }
+        };
 
 //        serv.getAll = function () {
 //            return serv.warnings;
@@ -61,7 +61,8 @@
 //        }
 
         function listenNewWarning() {
-            warningSocket.on('warning:new', function (data) {
+            SignalR.addListener(function (warning) {
+                var data = EntitiesConverterFactory.warningsToClient(warning);
                 console.info('warning:new recieved', data);
                 serv.warnings.push(data);
                 notifyNewWarningToBrowser(data);
@@ -69,28 +70,28 @@
                 serv.setSelected(data);
             });
         }
-        
-        function notifyNewWarningToBrowser(warning){
+
+        function notifyNewWarningToBrowser(warning) {
             var notification = {};
             notification.title = warning.type.label;
             notification.body = warning.location.neighborhood;
-            notification.icon = server.pngIcons+warning.type.name+'.png';
+            notification.icon = server.pngIcons + warning.type.name + '.png';
             notificationFactory.newNotification(notification.title, notification.body, notification.icon);
         }
 
         function notifySelected(warning) {
             angular.forEach(serv.selectedCallBacks, function (callback) {
                 callback(warning);
-            })
+            });
         }
-        
+
         function notifyWaningsChanged() {
             angular.forEach(serv.warningsCallBacks, function (callback) {
                 callback();
-            })
+            });
         }
-        
-        
+
+
         /*
          * new methods for .net backend
          */
@@ -118,8 +119,8 @@
                         var typesList = EntitiesConverterFactory.warningTypeToClient(result.data);
                         callback(typesList);
                     });
-        }
-        
+        };
+
         listenNewWarning();
 
         return serv;
