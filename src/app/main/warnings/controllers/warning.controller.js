@@ -31,7 +31,7 @@
 //        }
 
         function getWarningTypes() {
-            WarningDotNet.getTypes
+            WarningDotNet.getTypes(warningTypesCallback);
         }
 
         wc.selectWarning = function (w) {
@@ -60,6 +60,11 @@
         // callbacks
         function selectedCallback(warning) {
             wc.selectedId = warning._id;
+        }
+        
+        function warningTypesCallback(warningTypes){
+            if(warningTypes && warningTypes.length > 0)
+                wc.warningTypes = warningTypes;
         }
 
         function warningsCallback() {
@@ -95,6 +100,7 @@
 
 
         loadWarnings();
+        getWarningTypes();
 
     }
 })();

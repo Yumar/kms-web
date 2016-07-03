@@ -10,7 +10,7 @@
     angular.module('kms.warning')
             .factory('WarningFactory',  WarningFactory);
 
-    function WarningFactory($http, server, warningSocket, notificationFactory) {
+    function WarningFactory($http, server, notificationFactory) {
         var serv = {
             warnings: [],
             warningsCallBacks: [],
@@ -18,9 +18,9 @@
             selected: null
         };
         
-        serv.customizeWarningAreas = function (areas, callback){
-            warningSocket.emit('warning:customizeAreas', areas, callback);
-        }        
+//        serv.customizeWarningAreas = function (areas, callback){
+//            warningSocket.emit('warning:customizeAreas', areas, callback);
+//        }        
 
         serv.registerSelectedCallback = function (callback) {
             serv.selectedCallBacks.push(callback);
@@ -31,34 +31,34 @@
             notifySelected(warning);
         }
 
-        serv.createWarning = function (warning, callback) {
-            warning.type = JSON.parse(warning.type);
-            warningSocket.emit('warning:create', warning, callback);
-        }    
+//        serv.createWarning = function (warning, callback) {
+//            warning.type = JSON.parse(warning.type);
+//            warningSocket.emit('warning:create', warning, callback);
+//        }    
         
         serv.registerWarningsCallBacks = function (callback) {
             serv.warningsCallBacks.push(callback);
         }
 
-        serv.getAll = function () {
-            return serv.warnings;
-        };
+//        serv.getAll = function () {
+//            return serv.warnings;
+//        };
 
-        serv.get = function (id) {
-            return serv.warnings[id];
-        };
+//        serv.get = function (id) {
+//            return serv.warnings[id];
+//        };
 
-        serv.getTypes = function () {
-            return $http.get(server.api + 'warningtype');
-        }
-        
-        function listenAllWarnings() {
-            warningSocket.on('warning:list', function (data) {
-                console.info('warning:list recieved', data);
-                serv.warnings = data;
-                notifyWaningsChanged();
-            });
-        }
+//        serv.getTypes = function () {
+//            return $http.get(server.api + 'warningtype');
+//        }
+//        
+//        function listenAllWarnings() {
+//            warningSocket.on('warning:list', function (data) {
+//                console.info('warning:list recieved', data);
+//                serv.warnings = data;
+//                notifyWaningsChanged();
+//            });
+//        }
 
         function listenNewWarning() {
             warningSocket.on('warning:new', function (data) {
@@ -90,10 +90,38 @@
             })
         }
         
-        listenAllWarnings();
+        
+        /*
+         * new methods for .net backend
+         */
+
+        serv.createWarning = function (warning, callback) {
+            $http.post(server.DotNet.api + "warnings", warning).then(callback);
+        };
+
+        serv.getAll = function (callback) {
+            $http.get(server.DotNet.api + "warnings")
+                    .then(function (response) {
+                        var list = [];
+
+                        response.data.forEach(function (val, i) {
+                            list.push(EntitiesConverterFactory.warningsToClient(val));
+                        });
+                        callback(list);
+                    });
+        };
+
+        serv.getTypes = function (callback) {
+
+            $http.get(server.DotNet.api + 'typeofWarnings')
+                    .then(function (result) {
+                        var typesList = EntitiesConverterFactory.warningTypeToClient(result.data);
+                        callback(typesList);
+                    });
+        }
+        
         listenNewWarning();
 
         return serv;
-
     }
 })();
