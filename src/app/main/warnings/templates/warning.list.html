@@ -10,7 +10,8 @@
             <h3>{{ warning.type.label}}</h3>
             <h4>{{ warning.location.neighborhood}}</h4>
             <p>{{ warning.reportDate | date: 'MMM d, y': 'es_DO'}} - {{ warning.description}}</p>
-            <span></span>
+            <!--TODO: use real data-->
+            <span><md-icon md-font-icon="icon-thumb-up"></md-icon> <md-icon md-font-icon="icon-thumb-down"></md-icon></span>
         </div>
         <md-icon class="warning-icon" md-svg-src="assets/icons/svg/location.svg"></md-icon>
     </md-list-item>
