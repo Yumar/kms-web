@@ -31,7 +31,7 @@
 //        }
 
         function getWarningTypes() {
-            WarningDotNet.getTypes(warningTypesCallback);
+            WarningFactory.getTypes(warningTypesCallback);
         }
 
         wc.selectWarning = function (w) {
@@ -93,7 +93,7 @@
 
 // new server
         function loadWarnings() {
-            WarningDotNetFactory.getAll(function (list) {
+            WarningFactory.getAll(function (list) {
                 wc.list = list;
             });
         }
