@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -20,7 +20,7 @@
 
 //        serv.customizeWarningAreas = function (areas, callback){
 //            warningSocket.emit('warning:customizeAreas', areas, callback);
-//        }        
+//        }
 
         serv.registerSelectedCallback = function (callback) {
             serv.selectedCallBacks.push(callback);
@@ -34,7 +34,7 @@
 //        serv.createWarning = function (warning, callback) {
 //            warning.type = JSON.parse(warning.type);
 //            warningSocket.emit('warning:create', warning, callback);
-//        }    
+//        }
 
         serv.registerWarningsCallBacks = function (callback) {
             serv.warningsCallBacks.push(callback);
@@ -51,7 +51,7 @@
 //        serv.getTypes = function () {
 //            return $http.get(server.api + 'warningtype');
 //        }
-//        
+//
 //        function listenAllWarnings() {
 //            warningSocket.on('warning:list', function (data) {
 //                console.info('warning:list recieved', data);
@@ -111,6 +111,16 @@
                         callback(list);
                     });
         };
+
+        serv.vote = function(warningId, userId, value, callback){
+          var vow = {
+            UserId: userId,
+            Selection: value,
+            WarningId: warningId
+          }
+
+          $http.post(server.DotNet.api + "warningvows", vow).then(callback);
+        }
 
         serv.getTypes = function (callback) {
 

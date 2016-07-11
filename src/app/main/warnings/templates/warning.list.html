@@ -2,7 +2,7 @@
     <p>Alertas y Denuncias</p>
 </md-toolbar>
 <md-list>
-    <md-list-item class="md-3-line warning" ng-repeat-start="warning in wc.list | orderBy : '-reportDate'" 
+    <md-list-item class="md-3-line warning" ng-repeat-start="warning in wc.list | orderBy : '-reportDate'"
                   ng-click="wc.selectWarning(warning)" ng-class="{'grey-bg md-hue-3-bg': wc.isSelected(warning._id)}">
         <img class="warning-png-icon" ng-src="assets/icons/png/{{warning.type.name}}.png" />
         <!-- TODO: Replace png with svg <md-icon class="warning-icon" md-svg-src="assets/icons/png/{{warning.type.name}}.png"></md-icon> -->
@@ -11,7 +11,10 @@
             <h4>{{ warning.location.neighborhood}}</h4>
             <p>{{ warning.reportDate | date: 'MMM d, y': 'es_DO'}} - {{ warning.description}}</p>
             <!--TODO: use real data-->
-            <span><md-icon md-font-icon="icon-thumb-up"></md-icon> <md-icon md-font-icon="icon-thumb-down"></md-icon></span>
+            <span>
+              <md-icon md-font-icon="icon-thumb-up" ng-click="wc.upvote(warning.id)"></md-icon>
+              <md-icon md-font-icon="icon-thumb-down" ng-click="wc.downvote(warning.id)"></md-icon>
+            </span>
         </div>
         <md-icon class="warning-icon" md-svg-src="assets/icons/svg/location.svg"></md-icon>
     </md-list-item>
@@ -20,12 +23,12 @@
         No hay denuncias o alertas para presentar.
     </md-list-item>
 </md-list>
-<!-- 
+<!--
 <md-button class="md-fab md-warn md-fab-top-left" aria-label="P&aacute;nico">
     <md-icon md-svg-src="assets/icons/svg/warning.svg"></md-icon>
 </md-button>
 -->
-<md-button secure-element class="md-fab md-fab-top-right" aria-label="Nueva den&uacute;ncia" 
+<md-button secure-element class="md-fab md-fab-top-right" aria-label="Nueva den&uacute;ncia"
            ng-click="wc.user && wc.showDetailModal()">
     <md-icon md-svg-src="assets/icons/svg/bell.svg"></md-icon>
 </md-button>

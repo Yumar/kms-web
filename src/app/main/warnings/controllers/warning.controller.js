@@ -1,4 +1,4 @@
-/* 
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -57,11 +57,25 @@
             });
         }
 
+        wc.downvote = function(id){
+          WarningFactory.vote(id, wc.user.id, false,
+            function(){
+              alert("downvoted successfully")
+          })
+        }
+
+        wc.upvote = function(id){
+          WarningFactory.vote(id, wc.user.id, true,
+            function(){
+              alert("upvoted successfully")
+          })
+        }
+
         // callbacks
         function selectedCallback(warning) {
             wc.selectedId = warning._id;
         }
-        
+
         function warningTypesCallback(warningTypes){
             if(warningTypes && warningTypes.length > 0)
                 wc.warningTypes = warningTypes;
@@ -85,7 +99,7 @@
 //        userChangedCallback();
 //        warningsCallback();
 //        getWarningTypes();
-//        
+//
 //        //watch for current user changes from factory
 //        UserFactory.registerCurrentUserCallback(userChangedCallback);
 //        WarningFactory.registerSelectedCallback(selectedCallback);
