@@ -4,7 +4,7 @@
             .factory('EntitiesConverterFactory', EntitiesConverter);
     function EntitiesConverter() {
         var serv = {};
-        
+
         serv.warningsToServer = function (nodeWarning) {
             var serverWarning = {
                 userId: nodeWarning.user,
@@ -27,7 +27,7 @@
             };
             return serverWarning;
         };
-        
+
         serv.warningsToClient = function (serverWarning) {
             var clientWarning = {
                 description: serverWarning.message,
@@ -79,7 +79,7 @@
             };
             return warningTypeClient;
         };
-        
+
         serv.warningTypeToServer = function (clientWarningType) {
 
             var warningTypeServer = {
@@ -87,6 +87,24 @@
             };
             return warningTypeServer;
         };
+
+        serv.warningAreaToServer(area){
+          var userAddress = {
+            UserId: '',
+            Localitys: {
+                latitud: area.location.latitude,
+                longitud: area.location.longitude,
+                address: area.location.address,
+                country: area.location.country,
+                city: area.location.city,
+                sector: area.location.neighborhood
+            },
+            Notification:true
+          };
+
+          return userAddress;
+
+        }
 
         return serv;
     }

@@ -4,16 +4,19 @@
     angular.module('kms')
             .factory('NotificarionAreaFactory', notificarionArea);
 
-    function notificarionArea($http, server) {
+    function notificarionArea($http, server, EntitiesConverterFactory) {
         var serv = {
         };
 
         serv.add = function (userid, notificarionArea) {
-            return $http.post(server.api+'notificationarea/'+userid, notificarionArea);
+            var userArea = EntitiesConverterFactory.warningAreaToServer(notificarionArea);
+            userArea.UserId = userid;
+
+            return $http.post(server.DotNet.api+'usersaddress/', userArea);
         };
-        
+
         serv.remove = function(id){
-            
+          return $http.delete(server.DotNet.api+'usersaddress/', id);
         };
 
         return serv;
