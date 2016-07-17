@@ -44,7 +44,7 @@
 //            google.maps.event.trigger(mp.map, 'resize');
 //        });
 
-//      map rerender fix 
+//      map rerender fix
         mp.renderMap = false;
         $timeout(function () {
             mp.renderMap = true;
@@ -55,5 +55,3 @@
         warningsCallback();
     }
 })();
-
-

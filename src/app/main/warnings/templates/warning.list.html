@@ -16,7 +16,7 @@
               <md-icon md-font-icon="icon-thumb-down" ng-click="wc.downvote(warning.id)"></md-icon>
             </span>
         </div>
-        <md-icon class="warning-icon" md-svg-src="assets/icons/svg/location.svg"></md-icon>
+        <md-icon ng-if="{{warning.location.latitude && warning.location.longitude}}" class="warning-icon" md-svg-src="assets/icons/svg/location.svg"></md-icon>
     </md-list-item>
     <md-divider ng-repeat-end></md-divider>
     <md-list-item class="warning" ng-if="wc.list.length == 0">

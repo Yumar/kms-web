@@ -102,18 +102,18 @@
 //
 //        //watch for current user changes from factory
 //        UserFactory.registerCurrentUserCallback(userChangedCallback);
-//        WarningFactory.registerSelectedCallback(selectedCallback);
-//        WarningFactory.registerWarningsCallBacks(warningsCallback);
+       WarningFactory.registerSelectedCallback(selectedCallback);
+       WarningFactory.registerWarningsCallBacks(warningsCallback);
 
 // new server
-        function loadWarnings() {
-            WarningFactory.getAll(function (list) {
-                wc.list = list;
-            });
-        }
-
-
-        loadWarnings();
+        // function loadWarnings() {
+        //     WarningFactory.getAll(function (list) {
+        //         wc.list = list;
+        //     });
+        // }
+        //
+        //
+        // loadWarnings();
         getWarningTypes();
 
     }

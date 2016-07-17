@@ -88,7 +88,7 @@
             return warningTypeServer;
         };
 
-        serv.warningAreaToServer(area){
+        serv.warningAreaToServer = function(area){
           var userAddress = {
             UserId: '',
             Localitys: {
